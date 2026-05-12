@@ -2,6 +2,8 @@
 
 The Inkslap brand and design system, documented in Storybook.
 
+**Live:** https://inkslap-storybook.vercel.app
+
 **Brand:** Inkslap (NCI Trading Co., Ltd.) — a B2B marketplace for custom corporate gifts.
 **Source data:** Extracted from `https://inkslap.com` on 2026-05-12. Cross-referenced with the company brand brief.
 **Language:** English-first; Traditional Chinese alongside as the translation reference.
