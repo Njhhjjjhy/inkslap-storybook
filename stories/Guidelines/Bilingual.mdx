@@ -1,0 +1,160 @@
+{/* Bilingual.mdx — Inkslap brand */}
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Guidelines/Bilingual" />
+
+# Bilingual
+
+Inkslap operates in a bilingual market — English and Traditional Chinese. The live site today is **Chinese-only**, with a stub `/en` route that serves the Chinese content under `<html lang="en">`. The documented brand inverts this: **English is canonical, Traditional Chinese is a peer.**
+
+This is the most consequential gap between the live site and the documented brand. Closing it is a roadmap item, not a stylistic choice.
+
+---
+
+## Target state
+
+| Surface | English | Traditional Chinese |
+|---------|---------|---------------------|
+| `<html lang>` attribute | `en` | `zh-TW` |
+| Headlines | Display copy | Sub-display, one weight lighter |
+| Body | Canonical | Required, same length |
+| Buttons | Primary label | Same button shows zh on the zh route |
+| Forms | All labels | All labels |
+| Errors | All messages | All messages |
+| Schema (JSON-LD) | en strings | zh-TW strings |
+| URLs | `/en/...` | `/zh/...` (with `/zh-TW` as the canonical form) |
+| `availableLanguage` claim | yes | yes |
+| Language toggle | visible in header on every page | visible in header on every page |
+
+---
+
+## Rendering pattern
+
+When English and Chinese appear on the same surface, the English form is the primary heading and the Chinese sits below it at one step down in the type scale, in `--color-text-muted`.
+
+<div style={{ marginTop: '24px', padding: '24px', backgroundColor: '#F9F9F9', borderRadius: '12px' }}>
+  <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '32px', lineHeight: 1.1, fontWeight: 700, letterSpacing: '-0.02em', color: '#040404' }}>A moment to complete it all.</div>
+  <div style={{ fontFamily: '"Noto Sans TC", sans-serif', fontSize: '20px', lineHeight: 1.4, fontWeight: 400, color: '#6C6C6C', marginTop: '12px' }} lang="zh-TW">一刻完成選品、設計、報價、訂購。</div>
+</div>
+
+```html
+<h1>A moment to complete it all.</h1>
+<p class="lang-zh" lang="zh-TW">一刻完成選品、設計、報價、訂購。</p>
+```
+
+The `lang="zh-TW"` attribute on the Chinese fragment is **required** — screen readers switch pronunciation; CSS `:lang()` selectors can switch fonts.
+
+---
+
+## Font pairing
+
+Both languages share the same font stack:
+
+```css
+--font-family-body: 'Inter', 'Noto Sans TC', system-ui, sans-serif;
+```
+
+**Inter renders Latin glyphs; Noto Sans TC renders CJK glyphs.** The browser falls through the stack per glyph, which works correctly out of the box. The weight axis is aligned (400 / 500 / 600 / 700) so the two faces pair at the same nominal weight.
+
+For zh-primary surfaces — pages on `/zh/...` where Chinese is the canonical language — flip the stack:
+
+```css
+.lang-zh {
+  font-family: 'Noto Sans TC', 'Inter', system-ui, sans-serif;
+}
+```
+
+---
+
+## Mixed-script sentences
+
+English brand names inside Chinese sentences use a **single space** as separator:
+
+> Inkslap x 啾啾氣泡水獨家合作
+>
+> 上傳 Logo 圖片預覽效果
+
+Punctuation rules:
+
+- Single space between English word and adjacent Chinese character.
+- No space between Chinese characters and Chinese punctuation (`。`, `，`, `？`).
+- No space inside acronyms (`UV印`, `T恤`, `POLO衫`).
+- Use the Chinese full stop `。` at the end of zh sentences, even when they contain English words.
+
+---
+
+## Language toggle
+
+The header should include a language toggle on every page. Pattern:
+
+<div style={{ marginTop: '24px', display: 'inline-flex', gap: '4px', padding: '4px', backgroundColor: '#F3F3F3', border: '1px solid #E3E3E3', borderRadius: '999px' }}>
+  <button style={{ padding: '6px 14px', backgroundColor: '#0099DE', border: 'none', borderRadius: '999px', fontFamily: 'Inter, sans-serif', fontWeight: 500, fontSize: '14px', color: '#FFFFFF', cursor: 'pointer' }}>EN</button>
+  <button style={{ padding: '6px 14px', backgroundColor: 'transparent', border: 'none', borderRadius: '999px', fontFamily: '"Noto Sans TC", sans-serif', fontWeight: 500, fontSize: '14px', color: '#6C6C6C', cursor: 'pointer' }} lang="zh-TW">中文</button>
+</div>
+
+Implementation rules:
+
+- Active language shown in `--color-brand-blue` fill with white text.
+- Inactive language shown as a transparent pill with muted text.
+- Switching language updates the `<html lang>` attribute.
+- The URL changes between `/en/...` and `/zh/...` so a user can share a link in their preferred language.
+- Content persistence: switching languages should preserve the user's scroll position and form state where possible.
+
+The current site has **no toggle anywhere.** Implementing it is a roadmap requirement.
+
+---
+
+## URL strategy
+
+| Route | Language | Status |
+|-------|----------|--------|
+| `/` | redirect to `/zh` | current behaviour |
+| `/en/...` | English content, `<html lang="en">` | **must be built** |
+| `/zh/...` | Chinese content, `<html lang="zh-TW">` | current behaviour |
+
+The current `/en` route serves Chinese content with `lang="en"` — this is broken and must be fixed.
+
+---
+
+## What zh writes that en doesn't (and vice versa)
+
+Some content lives more naturally in one language than the other:
+
+| Phrase | English | Chinese | Notes |
+|--------|---------|---------|-------|
+| "North Star in the procurement maze" | works as marketing metaphor | `採購迷宮裡的北極星` | Both languages support this; same metaphor. |
+| "Hand the work to us" | works as casual imperative | `把工作交給我們` | Slightly more colloquial in zh; same energy. |
+| "In a moment" / 一刻 | works | `一刻` | zh has the stronger poetic register. |
+| "上傳 Logo" | "Upload your logo" | `上傳 Logo` | zh retains the English word "Logo". Don't translate to `標誌`. |
+| "MOQ" | written in full or as acronym | written as acronym | Same form both languages. |
+
+When in doubt, **preserve the same metaphor and the same number of beats** — both languages should read with the same rhythm.
+
+---
+
+## What not to do
+
+| Mistake | Why it's wrong | Fix |
+|---------|----------------|-----|
+| `<html lang="en">` on a Chinese page | Screen readers, search engines, and assistive tech rely on this | Match `lang` to the actual content |
+| Translating "Logo" to `標誌` | The brand uses the English word | Keep "Logo" |
+| Stacking Chinese above English | The brand is English-first | English on top, Chinese as the secondary fragment |
+| No language toggle | Users can't switch | Add a toggle in the header |
+| Translating product names literally | Products have proper names | Keep the original name; add a translation only if it's recognised |
+| `availableLanguage: ["en", "zh-TW"]` without an English site | Claim doesn't match delivery | Either ship English or remove the claim |
+| Using a flag icon for the toggle | Languages are not countries | Use text labels (`EN`, `中文`) |
+
+---
+
+## Rules
+
+| Rule | Detail |
+|------|--------|
+| English is canonical | Marketing, body copy, button labels — English ships first. |
+| Every surface in both languages | No string is en-only or zh-only. Errors, microcopy, schema — all of it. |
+| `lang` attribute on every fragment | `<p lang="zh-TW">` on zh fragments inside an en page; opposite on a zh page. |
+| Toggle in the header on every page | Visible, accessible, persistent across navigation. |
+| Same weight axis, same px sizes | The two faces share the type system; do not invent zh-only sizes. |
+| Single space between scripts | English word + Chinese character → one space. |
+| Chinese full stop for zh sentences | `。` not `.` on zh content. |
+| Keep "Logo" as an English word | Even inside Chinese sentences. |

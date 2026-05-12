@@ -1,0 +1,309 @@
+/**
+ * Inkslap brand — global styles
+ *
+ * CSS custom properties for the Inkslap design system, extracted from
+ * inkslap.com and normalised (drift values collapsed to canonical).
+ * Source: briefs/inkslap-brand-extraction.md.
+ *
+ * English-first: the documented brand uses English as canonical with
+ * Traditional Chinese as the translation reference.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700;900&display=swap');
+
+:root {
+  /* ============ Color: brand ============ */
+  --color-brand-blue: #0099DE;       /* canonical — logo wordmark, footer, primary CTAs */
+  --color-brand-sparkle: #FFA81B;    /* the only ornament on the wordmark */
+  --color-brand-yellow: #FFDD76;     /* active-state highlight */
+
+  /* ============ Color: signature gradient ============ */
+  --gradient-brand: linear-gradient(45deg, #80CCEF 0%, #F7D94D 50%, #FFA81B 100%);
+  --gradient-brand-blue: #80CCEF;
+  --gradient-brand-yellow: #F7D94D;
+  --gradient-brand-orange: #FFA81B;
+
+  /* ============ Color: interaction ============ */
+  --color-interaction-error: #D03131;
+  --color-interaction-success: #19B64E;
+  --color-interaction-warning: #F88000;
+  --color-interaction-hyperlink: #0099DE;
+  --color-interaction-disabled: #6CA0BD;
+
+  /* ============ Color: base ============ */
+  --color-base-black: #040404;       /* canonical text dark — collapses #000/#040404/#111 drift */
+  --color-base-white: #FFFFFF;
+  --color-base-page: #FFFFFF;
+
+  /* ============ Color: neutral scale ============ */
+  --color-neutral-50: #F9F9F9;
+  --color-neutral-100: #F3F3F3;      /* header search bg */
+  --color-neutral-150: #F0F0F0;      /* product card image bg, search tag bg */
+  --color-neutral-200: #E3E3E3;      /* header bottom border */
+  --color-neutral-250: #E1E1E1;
+  --color-neutral-300: #ABABAB;      /* colour-swatch border */
+  --color-neutral-400: #999999;      /* secondary microcopy */
+  --color-neutral-500: #888888;      /* inactive tabs */
+  --color-neutral-600: #6C6C6C;      /* placeholder, muted tab */
+  --color-neutral-700: #666666;      /* muted heading */
+  --color-neutral-800: #333333;      /* search-tag text */
+  --color-neutral-900: #111111;      /* card title */
+  --color-neutral-950: #040404;      /* primary text */
+
+  /* ============ Color: accent surface tints ============ */
+  --color-tint-warning-bg: #FFEFDF;  /* discounted-price tag bg */
+  --color-tint-navy-deep: #111A2D;   /* seasonal banner bg */
+
+  /* ============ Color: semantic ============ */
+  --color-text-primary: var(--color-base-black);
+  --color-text-secondary: var(--color-neutral-700);
+  --color-text-muted: var(--color-neutral-400);
+  --color-text-inverse: var(--color-base-white);
+  --color-text-link: var(--color-brand-blue);
+  --color-bg-primary: var(--color-base-white);
+  --color-bg-elevated: var(--color-base-white);
+  --color-bg-subtle: var(--color-neutral-100);
+  --color-border-default: var(--color-neutral-200);
+  --color-border-muted: var(--color-neutral-150);
+
+  /* ============ Typography: families ============ */
+  --font-family-display: 'Inter', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+  --font-family-body: 'Inter', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+  --font-family-zh: 'Noto Sans TC', 'Inter', system-ui, sans-serif;
+  --font-family-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* ============ Typography: weights ============ */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* ============ Typography: scale (px values from live site) ============ */
+  --font-size-display: 40px;         /* H1 hero — Services / About */
+  --font-size-h1: 40px;
+  --font-size-h2: 28.8px;            /* home feature title */
+  --font-size-h3: 24px;              /* Services columns, home featured */
+  --font-size-h4: 20px;              /* home features, Services step */
+  --font-size-h5: 16px;              /* product card title */
+  --font-size-body-lg: 18px;
+  --font-size-body: 16px;
+  --font-size-body-sm: 14px;
+  --font-size-caption: 12px;
+  --font-size-micro: 11px;           /* floor — never go smaller */
+
+  /* ============ Typography: line heights ============ */
+  --line-height-tight: 1.1;
+  --line-height-snug: 1.25;
+  --line-height-normal: 1.4;
+  --line-height-relaxed: 1.6;
+
+  /* ============ Spacing (8px rhythm, canonical from live site) ============ */
+  --space-0: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 40px;
+  --space-9: 48px;
+  --space-10: 60px;                   /* footer horizontal padding */
+  --space-11: 70px;                   /* home section vertical padding */
+  --space-12: 80px;                   /* home section vertical padding */
+  --space-13: 128px;
+
+  /* Component-specific paddings observed */
+  --space-button-sm: 8px 16px;       /* card CTA */
+  --space-button-md: 16px 32px;      /* standard primary */
+  --space-button-lg: 20px 48px;      /* hero CTA */
+  --space-pill-sm: 6px 12px;         /* upload pill */
+  --space-pill-md: 8px 20px;         /* generic pill */
+
+  /* ============ Border radius ============ */
+  --radius-none: 0;
+  --radius-xs: 4px;                   /* header buttons */
+  --radius-sm: 6px;                   /* card upload pill */
+  --radius-md: 8px;                   /* primary CTAs — canonical */
+  --radius-lg: 12px;
+  --radius-xl: 16px;                  /* modal */
+  --radius-pill: 999px;               /* search, accent pills */
+  --radius-circle: 50%;
+
+  /* ============ Shadows ============ */
+  --shadow-card-rest: 0 2px 8px 0 rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
+  --shadow-brand: 0 2px 8px 0 rgba(17, 154, 222, 0.3);   /* SIGNATURE — brand-tinted */
+  --shadow-modal:
+    0 11px 15px -7px rgba(0, 0, 0, 0.2),
+    0 24px 38px 3px rgba(0, 0, 0, 0.14),
+    0 9px 46px 8px rgba(0, 0, 0, 0.12);
+  --shadow-focus: 0 0 0 2px #FFFFFF, 0 0 0 4px var(--color-brand-blue);
+
+  /* ============ Motion ============ */
+  --duration-instant: 0ms;
+  --duration-fast: 150ms;
+  --duration-normal: 200ms;
+  --duration-slow: 300ms;
+  --duration-slower: 500ms;
+
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-emphasized: cubic-bezier(0.2, 0, 0, 1);
+
+  --transition-colors: color 150ms ease-out, background-color 150ms ease-out, border-color 150ms ease-out;
+  --transition-hover: all 150ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* ============ Base styles ============ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+}
+
+/* ============ Reduced motion ============ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============ Storybook docs typography overrides ============ */
+
+.sbdocs h1,
+.sbdocs h2,
+.sbdocs h3,
+.sbdocs h4,
+.sbdocs h5,
+.sbdocs h6 {
+  font-family: var(--font-family-display) !important;
+  font-weight: 700 !important;
+  color: var(--color-text-primary) !important;
+  margin-top: 40px !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 16px !important;
+  font-style: normal !important;
+  letter-spacing: -0.01em;
+}
+
+.sbdocs h1 { font-size: 40px !important; line-height: 1.1 !important; letter-spacing: -0.02em !important; }
+.sbdocs h2 { font-size: 28.8px !important; line-height: 1.15 !important; }
+.sbdocs h3 { font-size: 24px !important; line-height: 1.2 !important; }
+.sbdocs h4 { font-size: 20px !important; line-height: 1.25 !important; }
+.sbdocs h5 { font-size: 16px !important; line-height: 1.3 !important; }
+.sbdocs h6 { font-size: 14px !important; line-height: 1.3 !important; font-weight: 600 !important; }
+
+.sbdocs h1:first-child,
+.sbdocs h2:first-child {
+  margin-top: 0 !important;
+}
+
+.sbdocs hr {
+  margin-top: 0 !important;
+  margin-bottom: 32px !important;
+  border: none !important;
+  border-top: 1px solid var(--color-border-default) !important;
+}
+
+.sbdocs hr + h2,
+.sbdocs hr + h3 {
+  margin-top: 0 !important;
+}
+
+.sbdocs p,
+.sbdocs li {
+  font-family: var(--font-family-body) !important;
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+  color: var(--color-text-primary) !important;
+  font-style: normal !important;
+}
+
+.sbdocs p {
+  margin-top: 0 !important;
+  margin-bottom: 16px !important;
+}
+
+.sbdocs ul,
+.sbdocs ol {
+  margin-top: 0 !important;
+  margin-bottom: 16px !important;
+  padding-left: 24px;
+}
+
+.sbdocs li {
+  margin-bottom: 8px;
+}
+
+.sbdocs em,
+.sbdocs i {
+  font-style: normal !important;
+  font-weight: 500 !important;
+}
+
+.sbdocs code {
+  font-family: var(--font-family-mono) !important;
+  font-size: 14px !important;
+  background-color: var(--color-neutral-100);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.sbdocs pre {
+  margin-top: 16px !important;
+  margin-bottom: 24px !important;
+  font-family: var(--font-family-mono) !important;
+}
+
+.sbdocs table {
+  margin-top: 16px !important;
+  margin-bottom: 24px !important;
+}
+
+.sbdocs th,
+.sbdocs td {
+  font-family: var(--font-family-body) !important;
+  font-size: 14px !important;
+}
+
+/* ============ Reusable showcase utility classes ============ */
+
+.ink-sparkle {
+  display: inline-block;
+  color: var(--color-brand-sparkle);
+}
+
+.ink-divider {
+  height: 8px;
+  background: var(--gradient-brand);
+  border-radius: var(--radius-pill);
+  margin: 32px 0;
+}
+
+.ink-zh {
+  font-family: var(--font-family-zh);
+  color: var(--color-text-muted);
+  font-size: 14px;
+}

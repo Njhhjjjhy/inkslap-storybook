@@ -1,0 +1,226 @@
+{/* Cards.mdx — Inkslap brand */}
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Cards" />
+
+# Cards
+
+Cards are the workhorse component on the live site — product cards, feature cards, milestone cards, summary cards, modals. They share a common pattern: a single resting shadow, 12 px corner radius, and 24 px internal padding.
+
+---
+
+## Product card (catalogue)
+
+The most common card. Image-led, with a vertical text stack below.
+
+<div style={{ marginTop: '24px', maxWidth: '300px' }}>
+  <div style={{
+    backgroundColor: '#FFFFFF',
+    borderRadius: '12px',
+    boxShadow: '0 2px 8px 0 rgba(0, 0, 0, 0.06)',
+    overflow: 'hidden',
+  }}>
+    <div style={{ position: 'relative', height: '240px', backgroundColor: '#F0F0F0', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#999', fontSize: '14px' }}>
+      Product image
+      <div style={{ position: 'absolute', top: '12px', right: '12px', padding: '6px 12px', backgroundColor: 'rgba(255,255,255,0.95)', borderRadius: '6px', boxShadow: '0 2px 8px 0 rgba(0,0,0,0.1)', color: '#0099DE', fontWeight: 600, fontSize: '12px' }}>
+        Upload logo
+      </div>
+    </div>
+    <div style={{ padding: '16px 20px 20px' }}>
+      <div style={{ fontSize: '12px', color: '#999', fontWeight: 400 }}>Custom product</div>
+      <div style={{ fontWeight: 700, fontSize: '16px', color: '#111', marginTop: '4px' }}>Electroplated ball pen</div>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '12px' }}>
+        <div style={{ fontSize: '16px', fontWeight: 600, color: '#040404' }}>NT$ 20</div>
+        <button style={{
+          padding: '8px 16px',
+          backgroundColor: '#0099DE',
+          color: '#FFFFFF',
+          border: 'none',
+          borderRadius: '8px',
+          fontSize: '14px',
+          fontWeight: 600,
+          cursor: 'pointer',
+          boxShadow: '0 2px 8px 0 rgba(17, 154, 222, 0.3)',
+        }}>Customise</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+```css
+.ink-card-product {
+  background: var(--color-bg-elevated);
+  border-radius: var(--radius-lg);          /* 12px */
+  box-shadow: var(--shadow-card-rest);
+  overflow: hidden;
+  transition: box-shadow var(--duration-fast) var(--ease-out);
+}
+.ink-card-product:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+.ink-card-product__image {
+  height: 240px;
+  background-color: var(--color-neutral-150);
+  position: relative;
+}
+.ink-card-product__badge {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: var(--radius-sm);
+  padding: var(--space-pill-sm);
+  color: var(--color-brand-blue);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-caption);
+  box-shadow: var(--shadow-card-hover);
+}
+.ink-card-product__body {
+  padding: var(--space-4) var(--space-5) var(--space-5);
+}
+```
+
+---
+
+## Feature card
+
+Used in `KeyFeatures` sections. Icon on top, title, paragraph.
+
+<div style={{ marginTop: '24px', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
+  {[
+    { icon: '⚡', title: 'Fast and efficient', body: 'No more back-and-forth on gift orders. Inkslap makes the whole flow fast and smooth.' },
+    { icon: '🎨', title: 'Custom design', body: 'Upload your logo or image and see multiple custom-gift designs instantly.' },
+    { icon: '🛡', title: 'Quality assured', body: 'Vetted suppliers, transparent process, real-time order tracking from sample to delivery.' },
+  ].map((f, i) => (
+    <div key={i} style={{
+      padding: '24px',
+      backgroundColor: '#FFFFFF',
+      border: '1px solid #EEEEEE',
+      borderRadius: '12px',
+    }}>
+      <div style={{ width: '48px', height: '48px', borderRadius: '12px', backgroundColor: '#FFFBEC', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px' }}>{f.icon}</div>
+      <div style={{ marginTop: '16px', fontWeight: 600, fontSize: '20px', color: '#111' }}>{f.title}</div>
+      <p style={{ margin: '8px 0 0 0', fontSize: '14px', color: '#666', lineHeight: 1.6 }}>{f.body}</p>
+    </div>
+  ))}
+</div>
+
+---
+
+## Milestone card
+
+Used in the About page. Year as a label, milestone title, description.
+
+<div style={{ marginTop: '24px', display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px' }}>
+  {[
+    { year: '2024 Q4', title: 'Taiwan supply chain network established' },
+    { year: '2025 H1', title: 'Enterprise beta + IP partnerships launched' },
+    { year: '2025 H2', title: 'Cross-border shipping + multi-warehouse live' },
+    { year: '2026', title: 'Hong Kong and Singapore expansion' },
+  ].map((m, i) => (
+    <div key={i} style={{
+      padding: '20px 24px',
+      backgroundColor: '#FFFFFF',
+      border: '1px solid #E3E3E3',
+      borderRadius: '12px',
+    }}>
+      <div style={{ fontFamily: 'Inter, sans-serif', fontWeight: 700, fontSize: '20px', color: '#0099DE' }}>{m.year}</div>
+      <div style={{ marginTop: '6px', fontSize: '15px', color: '#040404', lineHeight: 1.4 }}>{m.title}</div>
+    </div>
+  ))}
+</div>
+
+---
+
+## Summary card (cart order total)
+
+Order total / pricing summary. Vertical row layout, with the final total emphasised.
+
+<div style={{ marginTop: '24px', maxWidth: '320px' }}>
+  <div style={{
+    backgroundColor: '#FFFFFF',
+    border: '1px solid #E3E3E3',
+    borderRadius: '12px',
+    padding: '24px',
+  }}>
+    <div style={{ fontWeight: 700, fontSize: '18px', color: '#040404' }}>Order total</div>
+    <div style={{ fontSize: '13px', color: '#999', marginTop: '4px' }}>0 items in bag</div>
+    <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div style={{ display: 'inline-block', padding: '4px 8px', backgroundColor: '#FFEFDF', color: '#F88000', borderRadius: '4px', fontSize: '12px', fontWeight: 500 }}>Promo price</div>
+      <div style={{ fontSize: '14px', color: '#040404' }}>NT$ 0</div>
+    </div>
+    <div style={{ marginTop: '12px', display: 'flex', justifyContent: 'space-between', fontSize: '14px', color: '#040404' }}>
+      <span>Shipping</span>
+      <span>NT$ 75</span>
+    </div>
+    <div style={{ marginTop: '16px', paddingTop: '16px', borderTop: '1px solid #E3E3E3', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <span style={{ fontWeight: 600, color: '#040404' }}>Total</span>
+      <span style={{ fontFamily: 'Inter, sans-serif', fontWeight: 700, fontSize: '20px', color: '#040404' }}>NT$ 75</span>
+    </div>
+    <button style={{
+      width: '100%',
+      marginTop: '16px',
+      padding: '12px',
+      backgroundColor: '#0099DE',
+      color: '#FFFFFF',
+      border: 'none',
+      borderRadius: '8px',
+      fontFamily: 'Inter, sans-serif',
+      fontSize: '15px',
+      fontWeight: 600,
+      cursor: 'pointer',
+    }}>Continue to checkout</button>
+  </div>
+</div>
+
+---
+
+## Anatomy
+
+| Part | Token | Notes |
+|------|-------|-------|
+| Background | `--color-bg-elevated` (`#FFFFFF`) | Solid white. No translucent fills. |
+| Border radius | `--radius-lg` (12 px) | Cards with images may use 0 px top + 12 px bottom on the image wrapper. |
+| Shadow | `--shadow-card-rest` | Rest state. |
+| Shadow on hover (if interactive) | `--shadow-card-hover` | Only when the card is interactive. Don't add hover shadow to static cards. |
+| Padding | `--space-6` (24 px) | Default. Tight cards may use `--space-4` (16 px). |
+| Title | `font-size-h5` (16 px) / 700 | Inter / Noto Sans TC. |
+| Body | `font-size-body-sm` (14 px) / 400, `--color-text-secondary` | Two to three lines max. |
+
+---
+
+## States
+
+| State | Treatment |
+|-------|-----------|
+| Default | `--shadow-card-rest` |
+| Hover (interactive cards) | `--shadow-card-hover`; transition `--transition-hover` |
+| Focus (interactive cards) | `--shadow-focus` ring |
+| Pressed | No transform; slight darken on background (`--color-neutral-50`) |
+| Selected | 2-px solid `--color-brand-blue` border, internal padding shrinks by 2 px to compensate |
+| Loading | Skeleton placeholder; no spinner inside the card |
+
+---
+
+## Anti-patterns
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginTop: '24px' }}>
+  <div style={{ padding: '20px', backgroundColor: '#F0FDF4', borderRadius: '8px', borderLeft: '4px solid #19B64E' }}>
+    <strong style={{ color: '#0F7D34' }}>Do</strong>
+    <ul style={{ margin: '12px 0 0 0', paddingLeft: '20px', color: '#040404' }}>
+      <li>Use a single shadow per card.</li>
+      <li>Apply hover shadow only when the card is interactive.</li>
+      <li>Keep card titles to one line.</li>
+      <li>Use a consistent radius across all cards in a grid.</li>
+    </ul>
+  </div>
+  <div style={{ padding: '20px', backgroundColor: '#FFF7EE', borderRadius: '8px', borderLeft: '4px solid #D03131' }}>
+    <strong style={{ color: '#D03131' }}>Don't</strong>
+    <ul style={{ margin: '12px 0 0 0', paddingLeft: '20px', color: '#040404' }}>
+      <li>Layer multiple shadows for "extra depth".</li>
+      <li>Use coloured borders (brand-blue or other) on resting cards.</li>
+      <li>Nest cards inside cards.</li>
+      <li>Use gradient or image backgrounds on standard cards.</li>
+    </ul>
+  </div>
+</div>

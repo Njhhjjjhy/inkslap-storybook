@@ -1,0 +1,320 @@
+{/* Buttons.mdx — Inkslap brand */}
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Buttons" />
+
+# Buttons
+
+The live site has three competing button systems for primary actions. The documented system collapses them to **one canonical primary** (filled brand-blue, 600 weight, 8 px radius) and one secondary (outlined blue), with size variants for hero, default, and card contexts.
+
+See **Audit → Findings** item 5 for the drift detail.
+
+---
+
+## Primary (canonical)
+
+The default action on every page. Filled brand-blue, white text, 8 px radius. The signature brand-tinted shadow is **optional** — apply it to the most prominent primary on the page.
+
+<div style={{ marginTop: '24px', display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+  <button style={{
+    padding: '16px 32px',
+    backgroundColor: '#0099DE',
+    color: '#FFFFFF',
+    border: 'none',
+    borderRadius: '8px',
+    fontFamily: 'Inter, "Noto Sans TC", sans-serif',
+    fontSize: '16px',
+    fontWeight: 600,
+    cursor: 'pointer',
+    transition: 'all 150ms cubic-bezier(0, 0, 0.2, 1)',
+  }}>Upload your logo</button>
+  <button style={{
+    padding: '16px 32px',
+    backgroundColor: '#0099DE',
+    color: '#FFFFFF',
+    border: 'none',
+    borderRadius: '8px',
+    fontFamily: 'Inter, "Noto Sans TC", sans-serif',
+    fontSize: '16px',
+    fontWeight: 600,
+    cursor: 'pointer',
+    boxShadow: '0 2px 8px 0 rgba(17, 154, 222, 0.3)',
+    transition: 'all 150ms cubic-bezier(0, 0, 0.2, 1)',
+  }}>With signature shadow</button>
+</div>
+
+```jsx
+<button className="ink-btn ink-btn--primary">
+  Upload your logo
+</button>
+```
+
+```css
+.ink-btn--primary {
+  background: var(--color-brand-blue);
+  color: var(--color-text-inverse);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: var(--space-button-md); /* 16px 32px */
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-semibold);
+  transition: var(--transition-hover);
+}
+
+.ink-btn--primary.ink-btn--hero {
+  padding: var(--space-button-lg); /* 20px 48px */
+  font-size: 17.6px;
+}
+
+.ink-btn--primary.ink-btn--signature {
+  box-shadow: var(--shadow-brand);
+}
+```
+
+---
+
+## Size variants
+
+<div style={{ marginTop: '24px', display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+  <button style={{ padding: '8px 16px', backgroundColor: '#0099DE', color: '#FFFFFF', border: 'none', borderRadius: '8px', fontFamily: 'Inter, sans-serif', fontSize: '14px', fontWeight: 600, cursor: 'pointer' }}>Small (card)</button>
+  <button style={{ padding: '16px 32px', backgroundColor: '#0099DE', color: '#FFFFFF', border: 'none', borderRadius: '8px', fontFamily: 'Inter, sans-serif', fontSize: '16px', fontWeight: 600, cursor: 'pointer' }}>Default</button>
+  <button style={{ padding: '20px 48px', backgroundColor: '#0099DE', color: '#FFFFFF', border: 'none', borderRadius: '8px', fontFamily: 'Inter, sans-serif', fontSize: '17.6px', fontWeight: 600, cursor: 'pointer' }}>Hero</button>
+</div>
+
+| Size | Padding | Font size | Use |
+|------|---------|-----------|-----|
+| Small | `8px 16px` | 14 px | inside cards, dense layouts |
+| Default | `16px 32px` | 16 px | standard CTAs |
+| Hero | `20px 48px` | 17.6 px | top of page, primary action |
+
+---
+
+## Secondary
+
+Outlined in brand blue. Used when the primary action is in the same row.
+
+<div style={{ marginTop: '24px', display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+  <button style={{
+    padding: '16px 32px',
+    backgroundColor: 'transparent',
+    color: '#0099DE',
+    border: '2px solid #0099DE',
+    borderRadius: '8px',
+    fontFamily: 'Inter, "Noto Sans TC", sans-serif',
+    fontSize: '16px',
+    fontWeight: 600,
+    cursor: 'pointer',
+  }}>Talk to sales</button>
+  <button style={{
+    padding: '16px 32px',
+    backgroundColor: 'transparent',
+    color: '#FFFFFF',
+    border: '2px solid #FFFFFF',
+    borderRadius: '8px',
+    fontFamily: 'Inter, "Noto Sans TC", sans-serif',
+    fontSize: '16px',
+    fontWeight: 600,
+    cursor: 'pointer',
+  }}>Secondary on dark</button>
+</div>
+
+```css
+.ink-btn--secondary {
+  background: transparent;
+  color: var(--color-brand-blue);
+  border: 2px solid var(--color-brand-blue);
+  /* same radius, padding, font as primary */
+}
+
+.ink-btn--secondary.ink-btn--on-dark {
+  color: var(--color-text-inverse);
+  border-color: var(--color-text-inverse);
+}
+```
+
+---
+
+## Ghost
+
+Text-only with hover background. Used inside tight layouts (product detail, table rows).
+
+<div style={{ marginTop: '24px', display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+  <button style={{
+    padding: '12px 16px',
+    backgroundColor: 'transparent',
+    color: '#040404',
+    border: 'none',
+    borderRadius: '6px',
+    fontFamily: 'Inter, sans-serif',
+    fontSize: '14px',
+    fontWeight: 500,
+    cursor: 'pointer',
+  }}>View details</button>
+  <button style={{
+    padding: '12px 16px',
+    backgroundColor: 'transparent',
+    color: '#0099DE',
+    border: 'none',
+    borderRadius: '6px',
+    fontFamily: 'Inter, sans-serif',
+    fontSize: '14px',
+    fontWeight: 500,
+    cursor: 'pointer',
+  }}>Continue shopping</button>
+</div>
+
+---
+
+## States
+
+<div style={{ marginTop: '24px', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px' }}>
+  <div style={{ padding: '16px', backgroundColor: '#F9F9F9', borderRadius: '8px', textAlign: 'center' }}>
+    <button style={{ padding: '12px 24px', backgroundColor: '#0099DE', color: '#FFFFFF', border: 'none', borderRadius: '8px', fontWeight: 600, cursor: 'pointer' }}>Default</button>
+    <div style={{ marginTop: '8px', fontSize: '12px', color: '#6C6C6C' }}>brand-blue</div>
+  </div>
+  <div style={{ padding: '16px', backgroundColor: '#F9F9F9', borderRadius: '8px', textAlign: 'center' }}>
+    <button style={{ padding: '12px 24px', backgroundColor: '#007BC2', color: '#FFFFFF', border: 'none', borderRadius: '8px', fontWeight: 600, cursor: 'pointer' }}>Hover</button>
+    <div style={{ marginTop: '8px', fontSize: '12px', color: '#6C6C6C' }}>~10% darker</div>
+  </div>
+  <div style={{ padding: '16px', backgroundColor: '#F9F9F9', borderRadius: '8px', textAlign: 'center' }}>
+    <button style={{ padding: '12px 24px', backgroundColor: '#0099DE', color: '#FFFFFF', border: 'none', borderRadius: '8px', fontWeight: 600, cursor: 'pointer', boxShadow: '0 0 0 2px #FFFFFF, 0 0 0 4px #0099DE' }}>Focus</button>
+    <div style={{ marginTop: '8px', fontSize: '12px', color: '#6C6C6C' }}>brand-blue ring</div>
+  </div>
+  <div style={{ padding: '16px', backgroundColor: '#F9F9F9', borderRadius: '8px', textAlign: 'center' }}>
+    <button style={{ padding: '12px 24px', backgroundColor: '#6CA0BD', color: '#FFFFFF', border: 'none', borderRadius: '8px', fontWeight: 600, cursor: 'not-allowed', opacity: 1 }} disabled>Disabled</button>
+    <div style={{ marginTop: '8px', fontSize: '12px', color: '#6C6C6C' }}>desaturated</div>
+  </div>
+</div>
+
+| State | Treatment |
+|-------|-----------|
+| Default | `--color-brand-blue` fill |
+| Hover | Background darkens ~10% (`#007BC2`); cursor changes to pointer |
+| Focus | `--shadow-focus` ring (`0 0 0 2px #FFFFFF, 0 0 0 4px #0099DE`) |
+| Active | Background darkens ~20% briefly, no transform |
+| Disabled | `#6CA0BD` fill, `cursor: not-allowed`, opacity 100% (not 50%) |
+| Loading | Spinner replaces label, button width preserved, click disabled |
+
+---
+
+## Buttons + icons
+
+Phosphor icon paired left of label. Gap is **8 px**.
+
+<div style={{ marginTop: '24px', display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+  <button style={{
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '8px',
+    padding: '16px 32px',
+    backgroundColor: '#0099DE',
+    color: '#FFFFFF',
+    border: 'none',
+    borderRadius: '8px',
+    fontFamily: 'Inter, sans-serif',
+    fontSize: '16px',
+    fontWeight: 600,
+    cursor: 'pointer',
+  }}>
+    <svg width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg>
+    Upload your logo
+  </button>
+  <button style={{
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '8px',
+    padding: '16px 32px',
+    backgroundColor: 'transparent',
+    color: '#0099DE',
+    border: '2px solid #0099DE',
+    borderRadius: '8px',
+    fontFamily: 'Inter, sans-serif',
+    fontSize: '16px',
+    fontWeight: 600,
+    cursor: 'pointer',
+  }}>
+    <svg width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg>
+    Add to bag
+  </button>
+</div>
+
+---
+
+## Pill buttons
+
+Used for accent CTAs (search-related pills, filter chips). Fully rounded (`--radius-pill`).
+
+<div style={{ marginTop: '24px', display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+  <button style={{
+    padding: '6px 14px',
+    backgroundColor: '#FFFBEC',
+    color: '#040404',
+    border: '1px solid #FFA81B',
+    borderRadius: '999px',
+    fontFamily: 'Inter, sans-serif',
+    fontSize: '14px',
+    fontWeight: 500,
+    cursor: 'pointer',
+  }}>Customer experience</button>
+  <button style={{
+    padding: '8px 20px',
+    backgroundColor: '#0099DE',
+    color: '#FFFFFF',
+    border: 'none',
+    borderRadius: '999px',
+    fontFamily: 'Inter, sans-serif',
+    fontSize: '14px',
+    fontWeight: 500,
+    cursor: 'pointer',
+  }}>Explore products</button>
+  <button style={{
+    padding: '6px 12px',
+    backgroundColor: '#F0F0F0',
+    color: '#333',
+    border: 'none',
+    borderRadius: '8px',
+    fontFamily: 'Inter, sans-serif',
+    fontSize: '13px',
+    fontWeight: 500,
+    cursor: 'pointer',
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '6px',
+  }}>
+    Search: 紅包袋
+    <svg width="12" height="12" viewBox="0 0 256 256" fill="currentColor"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg>
+  </button>
+</div>
+
+| Pill variant | Use |
+|--------------|-----|
+| Kicker (amber outline) | Section labels above headings |
+| Accent (filled blue) | Call-to-action chips |
+| Filter (grey, with X) | Removable search filters |
+
+---
+
+## Anti-patterns
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginTop: '24px' }}>
+  <div style={{ padding: '20px', backgroundColor: '#F0FDF4', borderRadius: '8px', borderLeft: '4px solid #19B64E' }}>
+    <strong style={{ color: '#0F7D34' }}>Do</strong>
+    <ul style={{ margin: '12px 0 0 0', paddingLeft: '20px', color: '#040404' }}>
+      <li>Use one primary CTA per section.</li>
+      <li>Pair primary with secondary, not two primaries.</li>
+      <li>Use the signature shadow for the page's most important action.</li>
+      <li>Keep button labels under 4 words.</li>
+    </ul>
+  </div>
+  <div style={{ padding: '20px', backgroundColor: '#FFF7EE', borderRadius: '8px', borderLeft: '4px solid #D03131' }}>
+    <strong style={{ color: '#D03131' }}>Don't</strong>
+    <ul style={{ margin: '12px 0 0 0', paddingLeft: '20px', color: '#040404' }}>
+      <li>Use the orange sparkle as a button colour.</li>
+      <li>Use uppercase labels.</li>
+      <li>Use exclamation points.</li>
+      <li>Mix the three legacy button systems (product-detail black-outlined, services blue-filled, home `#0D95DE`-filled). Stick to the canonical primary.</li>
+      <li>Bake CTAs into hero images as bitmaps.</li>
+    </ul>
+  </div>
+</div>

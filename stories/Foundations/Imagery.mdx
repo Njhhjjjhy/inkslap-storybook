@@ -1,0 +1,119 @@
+{/* Imagery.mdx — Inkslap brand */}
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Imagery" />
+
+# Imagery
+
+Inkslap's imagery falls into two distinct modes — **studio product** and **editorial lifestyle** — and one decorative element: the **signature gradient divider**. There are no illustrations in the system today.
+
+---
+
+## Studio product
+
+Every product card uses the same treatment: a single subject, white or near-white background, soft even lighting, no styling props. Photographed three-quarter or front-on. Square or near-square aspect ratio.
+
+<div style={{ marginTop: '24px', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }}>
+  <div style={{ aspectRatio: '1', backgroundColor: '#F0F0F0', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', color: '#999' }}>Product on white</div>
+  <div style={{ aspectRatio: '1', backgroundColor: '#F0F0F0', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', color: '#999' }}>Product on white</div>
+  <div style={{ aspectRatio: '1', backgroundColor: '#F0F0F0', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', color: '#999' }}>Product on white</div>
+</div>
+
+| Property | Value |
+|----------|-------|
+| Background | white (`#FFFFFF`) or very light grey (`#F0F0F0`) |
+| Lighting | soft, diffuse, no hard shadows |
+| Composition | single subject, centred, no props |
+| Aspect ratio | 1:1 (square) for cards; 4:3 for product detail hero |
+| Treatment | natural colour, no filters, no overlays |
+| Asset host | `ec.inkslap.com/uploads/products/{slug}.jpg` |
+
+Use studio product treatment for every catalogue card, search result, and product detail hero. **Never** swap in a lifestyle shot for a product card — the consistency of the grid is part of the brand's "clean, trustworthy commerce" signal.
+
+---
+
+## Editorial lifestyle
+
+Hero slides and the homepage CTA section use a different treatment: products arranged in compositions, with brand colour washes and contextual props (bubbles, packaging, table surfaces).
+
+<div style={{ marginTop: '24px', display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '16px' }}>
+  <div style={{ aspectRatio: '16/9', backgroundColor: '#0099DE', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#FFFFFF', fontSize: '14px' }}>Hero — brand-colour wash with product props</div>
+  <div style={{ aspectRatio: '16/9', backgroundColor: '#80CCEF', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#040404', fontSize: '14px' }}>Editorial composition</div>
+</div>
+
+| Property | Value |
+|----------|-------|
+| Background | brand colour wash (`--color-brand-blue` or gradient stops), or contextual scene |
+| Composition | 2–4 products in arranged scene, with relevant props |
+| Lighting | dramatic or contextual (window light, soft sun) |
+| Aspect ratio | 16:9 hero; 4:3 secondary editorial |
+| Use | hero slides only; never inside product grids |
+
+The current site has three hero slides; bilingual brand campaigns (the Inkslap × 啾啾 sparkling water collaboration) use editorial treatment heavily.
+
+---
+
+## Signature gradient divider
+
+A decorative 8 px gradient bar separates major homepage sections. It is the brand's most distinctive visual element after the wordmark.
+
+<div style={{ marginTop: '24px' }}>
+  <div style={{ height: '8px', background: 'linear-gradient(45deg, #80CCEF 0%, #F7D94D 50%, #FFA81B 100%)', borderRadius: '999px' }} />
+  <div style={{ marginTop: '12px', fontFamily: 'monospace', fontSize: '13px', color: '#6C6C6C' }}>
+    8px tall, fully rounded ends, linear-gradient(45deg, #80CCEF, #F7D94D, #FFA81B)
+  </div>
+</div>
+
+Use the divider:
+
+- Between major sections on long pages.
+- As a top or bottom edge accent on hero cards.
+- As a loading-progress indicator.
+
+Do **not** use the divider:
+
+- As a background fill behind text.
+- Around buttons or interactive elements.
+- Stacked or repeated within the same screen.
+
+---
+
+## Trust strip — partner logos
+
+The homepage's "trusted by" strip lists 25 brand logos in a marquee. They are rendered monochrome and desaturated at small sizes (≈ 130–160 px wide), with the brand colour stripped out.
+
+| Property | Value |
+|----------|-------|
+| Treatment | monochrome / desaturated, single tone |
+| Size | 130–160 px wide |
+| Layout | horizontal marquee, infinite scroll, auto-rotates |
+| Animation | linear, constant speed (no easing) |
+| Spacing | even gaps, no group separators |
+
+The list (in document order from the live site): BenQ · BlackRock · Christie's · CSD · Dentsu · Herman Miller · Hongkuo · Keith Haring · KFC · Live · Max&Co · Namesake · National Palace Museum · Netflix · OKX · Pokémon · Porsche · Shantell Martin · Sotheby's · Taipei 101 · TatlerAsia · Uber · Uber Eats · Volkswagen · Western Digital.
+
+---
+
+## Illustrations
+
+The system **does not include illustrations today.** All non-photographic graphic content is one of:
+
+- The brand sparkle (`--color-brand-sparkle`).
+- The signature gradient divider.
+- Numbered step circles on Services and About.
+- Phosphor icons (see Iconography).
+
+If illustration becomes needed in future, it should be added as a deliberate system extension — not introduced piecemeal.
+
+---
+
+## Rules
+
+| Rule | Detail |
+|------|--------|
+| Studio for product, editorial for brand | The two treatments do not mix on the same surface. |
+| White or brand-blue, no other backgrounds | Studio shots use white. Editorial uses brand blue or gradient stops. No purple, pink, or red backgrounds. |
+| Partner logos are monochrome | Always desaturate to a single tone for the trust strip. Brands keep their identity through their wordmark shape, not colour. |
+| The gradient is decoration, not a wash | An 8 px bar, not a 100 px hero background. |
+| No filters, no overlays | Product photography is shown as-shot. No Instagram-style filters. |
+| Alt text describes the message, not the object | A hero alt should say "Upload your logo to design a custom water bottle", not "Inkslap logo on a can". |

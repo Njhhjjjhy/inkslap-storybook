@@ -1,0 +1,136 @@
+{/* Logo.mdx — Inkslap brand */}
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Logo" />
+
+# Logo
+
+The Inkslap logo is a lowercase wordmark `inkslap` set tight, with a single 4-point orange sparkle floating above and slightly left of the dot on the `i`. The sparkle is the only ornament. There is no icon mark or monogram.
+
+---
+
+## The wordmark
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginTop: '24px' }}>
+  <div style={{ padding: '48px 32px', backgroundColor: '#FFFFFF', border: '1px solid #E3E3E3', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <svg width="160" height="40" viewBox="0 0 130 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <text x="0" y="26" fontFamily="Inter, system-ui, sans-serif" fontSize="28" fontWeight="700" fill="#0099DE" letterSpacing="-0.5">inkslap</text>
+      <path d="M14 0 L15.5 4 L19.5 5.5 L15.5 7 L14 11 L12.5 7 L8.5 5.5 L12.5 4 Z" fill="#FFA81B" />
+    </svg>
+  </div>
+  <div style={{ padding: '48px 32px', backgroundColor: '#0099DE', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <svg width="160" height="40" viewBox="0 0 130 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <text x="0" y="26" fontFamily="Inter, system-ui, sans-serif" fontSize="28" fontWeight="700" fill="#FFFFFF" letterSpacing="-0.5">inkslap</text>
+      <path d="M14 0 L15.5 4 L19.5 5.5 L15.5 7 L14 11 L12.5 7 L8.5 5.5 L12.5 4 Z" fill="#FFA81B" />
+    </svg>
+  </div>
+</div>
+
+The two approved colour treatments. **Blue wordmark on white** is the primary; **white wordmark on Inkslap Blue** is for use on the brand colour background (the footer). The sparkle stays orange in both treatments.
+
+---
+
+## Source files
+
+| File | viewBox | Wordmark fill | Sparkle fill | Background |
+|------|---------|---------------|--------------|------------|
+| `/new-logo-blue.svg` | `0 0 130 32` | `#0099DE` | `#FFA81B` | white (transparent) |
+| `/_next/static/media/main-website-footer-logo.svg` | `0 0 122 30` | `#FFFFFF` | `#FFA81B` | for use on `#0099DE` |
+| `/assets/favicon_512.png` | — | (favicon variant) | `#FFA81B` | `#0099DE`-adjacent tile |
+
+The sparkle hex is identical across all variants: **`#FFA81B`**.
+
+---
+
+## The sparkle
+
+The sparkle is a four-point star with concave sides. It sits above and slightly to the left of the dot on the `i`, sized roughly one-third of the wordmark's cap height.
+
+<div style={{ marginTop: '24px', padding: '40px', backgroundColor: '#FFFFFF', border: '1px solid #E3E3E3', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '32px' }}>
+  <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 1 L13.5 9 L21 12 L13.5 15 L12 23 L10.5 15 L3 12 L10.5 9 Z" fill="#FFA81B" />
+  </svg>
+  <div>
+    <div style={{ fontWeight: 600, fontSize: '18px' }}>Sparkle</div>
+    <div style={{ marginTop: '4px', fontFamily: 'monospace', fontSize: '14px', color: '#6C6C6C' }}>#FFA81B</div>
+    <div style={{ marginTop: '8px', fontSize: '14px', color: '#6C6C6C' }}>Four-point star, concave sides, single fill colour. Use only as part of the wordmark or as a standalone accent at small sizes (favicon, app icon).</div>
+  </div>
+</div>
+
+---
+
+## Sizing
+
+Rendered sizes on the live site, at the captured viewport (`innerWidth: 809`):
+
+| Location | Size |
+|----------|------|
+| Header (every page) | 73 × 18 px |
+| TrustBanner (homepage hero zone) | 150 × 37 px |
+| Footer (every page) | ~73 × 18 px |
+| Favicon | 32 × 32 px (sparkle only, no wordmark) |
+
+**Minimum size:** 60 px wide for the full wordmark. Below 60 px, switch to the sparkle-only mark (the favicon variant).
+
+---
+
+## Clear space
+
+The live site does not enforce explicit clear space. The recommended minimum is **the height of the wordmark itself** on all four sides. In practice on the live site, the header leaves ~16 px from the page edge and ~70 px before the nav begins.
+
+<div style={{ marginTop: '24px', padding: '40px', backgroundColor: '#F3F3F3', borderRadius: '12px' }}>
+  <div style={{ padding: '36px', backgroundColor: '#FFFFFF', border: '1px dashed #ABABAB', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+    <svg width="120" height="30" viewBox="0 0 130 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <text x="0" y="26" fontFamily="Inter, system-ui, sans-serif" fontSize="28" fontWeight="700" fill="#0099DE" letterSpacing="-0.5">inkslap</text>
+      <path d="M14 0 L15.5 4 L19.5 5.5 L15.5 7 L14 11 L12.5 7 L8.5 5.5 L12.5 4 Z" fill="#FFA81B" />
+    </svg>
+  </div>
+  <div style={{ marginTop: '12px', fontSize: '13px', color: '#6C6C6C' }}>Dashed line = minimum clear space (≈ wordmark height on all sides).</div>
+</div>
+
+---
+
+## Do and don't
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginTop: '24px' }}>
+  <div style={{ padding: '20px', backgroundColor: '#F0FDF4', borderRadius: '8px', borderLeft: '4px solid #19B64E' }}>
+    <strong style={{ color: '#0F7D34' }}>Do</strong>
+    <ul style={{ margin: '12px 0 0 0', paddingLeft: '20px', color: '#040404' }}>
+      <li>Use the blue wordmark on white surfaces.</li>
+      <li>Use the white wordmark on Inkslap Blue backgrounds.</li>
+      <li>Keep the sparkle in <code>#FFA81B</code> in both treatments.</li>
+      <li>Preserve the relative position and proportion of the sparkle.</li>
+    </ul>
+  </div>
+  <div style={{ padding: '20px', backgroundColor: '#FFF7EE', borderRadius: '8px', borderLeft: '4px solid #D03131' }}>
+    <strong style={{ color: '#D03131' }}>Don't</strong>
+    <ul style={{ margin: '12px 0 0 0', paddingLeft: '20px', color: '#040404' }}>
+      <li>Recolour the wordmark to any colour outside <code>#0099DE</code> or <code>#FFFFFF</code>.</li>
+      <li>Recolour the sparkle. It is always <code>#FFA81B</code>.</li>
+      <li>Stretch, rotate, or skew the wordmark.</li>
+      <li>Title-case the wordmark to "Inkslap" — that form is for body copy only.</li>
+      <li>Add a tagline directly under the wordmark as part of the lockup.</li>
+    </ul>
+  </div>
+</div>
+
+---
+
+## Casing rule
+
+The brand name has two forms:
+
+- **`inkslap`** — lowercase, in the wordmark only. The wordmark is a closed asset; do not retypeset it as body copy.
+- **`Inkslap`** — title case, used in every other written context. This is the canonical body form.
+
+The live site exhibits drift on this — `INKSLAP` appears as image `alt` text and `InkSlap` (camel case) appears once in the KeyFeatures copy. Both are incorrect. See **Audit → Findings** for the full list.
+
+---
+
+## CSS custom properties
+
+```css
+--color-brand-blue: #0099DE;       /* wordmark in primary treatment */
+--color-brand-sparkle: #FFA81B;    /* sparkle, never changes */
+--color-base-white: #FFFFFF;       /* wordmark on dark surfaces */
+```

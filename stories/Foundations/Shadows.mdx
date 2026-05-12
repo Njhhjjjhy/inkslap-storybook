@@ -1,0 +1,150 @@
+{/* Shadows.mdx — Inkslap brand */}
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Shadows" />
+
+# Shadows
+
+Inkslap uses shadows sparingly. Cards have a single resting shadow; modals use a Material-style three-layer elevation; and there is **one signature treatment** — a brand-tinted shadow used only on primary blue card CTAs.
+
+The signature shadow is the part of the system most worth protecting.
+
+---
+
+## Card resting
+
+The default for any elevated surface — product cards, content cards, pill badges.
+
+<div style={{ marginTop: '24px', padding: '40px', backgroundColor: '#F9F9F9', borderRadius: '12px', display: 'flex', gap: '24px', justifyContent: 'center' }}>
+  <div style={{
+    width: '200px',
+    padding: '24px',
+    backgroundColor: '#FFFFFF',
+    borderRadius: '12px',
+    boxShadow: '0 2px 8px 0 rgba(0, 0, 0, 0.06)',
+  }}>
+    <div style={{ fontWeight: 600, marginBottom: '8px' }}>shadow-card-rest</div>
+    <code style={{ fontSize: '11px', color: '#6C6C6C', background: 'transparent' }}>0 2px 8px 0 rgba(0,0,0,0.06)</code>
+  </div>
+</div>
+
+---
+
+## Card hover
+
+A small step heavier — used when a card is interactive and the user pointer is over it.
+
+<div style={{ marginTop: '24px', padding: '40px', backgroundColor: '#F9F9F9', borderRadius: '12px', display: 'flex', gap: '24px', justifyContent: 'center' }}>
+  <div style={{
+    width: '200px',
+    padding: '24px',
+    backgroundColor: '#FFFFFF',
+    borderRadius: '12px',
+    boxShadow: '0 2px 8px 0 rgba(0, 0, 0, 0.1)',
+  }}>
+    <div style={{ fontWeight: 600, marginBottom: '8px' }}>shadow-card-hover</div>
+    <code style={{ fontSize: '11px', color: '#6C6C6C', background: 'transparent' }}>0 2px 8px 0 rgba(0,0,0,0.1)</code>
+  </div>
+</div>
+
+---
+
+## Signature brand shadow
+
+The brand-tinted shadow is **only used on primary blue elements** — the home `Customise` card CTA is the only place this currently appears. It signals "this is a brand-primary action" without needing a heavier weight or a different shape.
+
+<div style={{ marginTop: '24px', padding: '40px', backgroundColor: '#F9F9F9', borderRadius: '12px', display: 'flex', gap: '24px', justifyContent: 'center' }}>
+  <button style={{
+    padding: '12px 28px',
+    backgroundColor: '#0099DE',
+    color: '#FFFFFF',
+    border: 'none',
+    borderRadius: '8px',
+    fontFamily: 'Inter, sans-serif',
+    fontSize: '16px',
+    fontWeight: 600,
+    cursor: 'pointer',
+    boxShadow: '0 2px 8px 0 rgba(17, 154, 222, 0.3)',
+  }}>
+    Customise
+  </button>
+</div>
+
+<div style={{ marginTop: '16px', padding: '16px', backgroundColor: '#FFFBEC', borderRadius: '8px', borderLeft: '4px solid #FFA81B' }}>
+  <strong>Signature treatment.</strong>
+  <p style={{ margin: '8px 0 0 0', fontSize: '14px' }}>
+    <code style={{ background: 'transparent' }}>0 2px 8px 0 rgba(17, 154, 222, 0.3)</code> — a brand-blue-tinted shadow. Use only on filled-blue card CTAs. Do not apply to outlined or secondary buttons. The shadow gives the button a permanent "lifted" feel that reads as brand emphasis.
+  </p>
+</div>
+
+---
+
+## Modal
+
+A Material-style elevation 24, three stacked layers. Used only on dialogs.
+
+<div style={{ marginTop: '24px', padding: '60px 40px', backgroundColor: '#F9F9F9', borderRadius: '12px', display: 'flex', justifyContent: 'center' }}>
+  <div style={{
+    width: '320px',
+    padding: '32px',
+    backgroundColor: '#FFFFFF',
+    borderRadius: '16px',
+    boxShadow: '0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12)',
+  }}>
+    <div style={{ fontWeight: 700, fontSize: '20px', marginBottom: '12px' }}>shadow-modal</div>
+    <code style={{ fontSize: '11px', color: '#6C6C6C', background: 'transparent', display: 'block', lineHeight: 1.6 }}>
+      0 11px 15px -7px rgba(0,0,0,0.2),<br />
+      0 24px 38px 3px rgba(0,0,0,0.14),<br />
+      0 9px 46px 8px rgba(0,0,0,0.12)
+    </code>
+  </div>
+</div>
+
+---
+
+## Focus ring
+
+The documented focus indicator. Two-layer ring: a white inner gap, an Inkslap Blue outer ring.
+
+<div style={{ marginTop: '24px', padding: '40px', backgroundColor: '#F9F9F9', borderRadius: '12px', display: 'flex', gap: '24px', justifyContent: 'center' }}>
+  <button style={{
+    padding: '12px 28px',
+    backgroundColor: '#FFFFFF',
+    color: '#040404',
+    border: '1px solid #040404',
+    borderRadius: '8px',
+    fontFamily: 'Inter, sans-serif',
+    fontSize: '16px',
+    fontWeight: 500,
+    cursor: 'pointer',
+    boxShadow: '0 0 0 2px #FFFFFF, 0 0 0 4px #0099DE',
+  }}>
+    Focused button
+  </button>
+</div>
+
+The live site does not consistently show focus rings on its interactive elements. The documented standard is **2 px gap + 2 px brand-blue ring** on every focusable element. See **Guidelines → Accessibility**.
+
+---
+
+## Shadow tokens summary
+
+| Token | Value | Use |
+|-------|-------|-----|
+| `--shadow-card-rest` | `0 2px 8px 0 rgba(0,0,0,0.06)` | Resting card |
+| `--shadow-card-hover` | `0 2px 8px 0 rgba(0,0,0,0.1)` | Hovered card |
+| `--shadow-brand` | `0 2px 8px 0 rgba(17,154,222,0.3)` | **Signature** — primary blue CTAs only |
+| `--shadow-modal` | Three-layer Material elevation 24 | Modals, dialogs |
+| `--shadow-focus` | `0 0 0 2px #FFFFFF, 0 0 0 4px #0099DE` | Focus ring |
+
+---
+
+## Rules
+
+| Rule | Detail |
+|------|--------|
+| Use shadows sparingly | The system has only five tokens. Resist the urge to invent intermediate values. |
+| The brand-tinted shadow is a signature | Reserve `--shadow-brand` for primary blue card CTAs. Do not apply it to outlined buttons, secondary actions, or non-CTA cards. |
+| No outer-glow effects | No purple, no neon, no soft white glows. The system is grounded in subtle drop shadows only. |
+| No `inset` shadows | Pressed states use colour shift, not inset shadows. |
+| Focus is always brand blue | Focus rings use `--color-brand-blue`, regardless of element colour. |

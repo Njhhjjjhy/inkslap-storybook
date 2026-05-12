@@ -1,0 +1,128 @@
+{/* VoiceAndTone.mdx — Inkslap brand */}
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Guidelines/Voice & Tone" />
+
+# Voice and tone
+
+Direct. Second person. Quantified. The Inkslap voice promises specific outcomes in specific minutes and days, addresses the reader as `you`, and earns trust by being competent rather than aspirational.
+
+---
+
+## Voice attributes
+
+| Attribute | What it means | What it sounds like |
+|-----------|---------------|---------------------|
+| **Direct** | One idea per sentence. Strong verbs. Active voice. | "Upload your logo." Not "Logos can be uploaded by users." |
+| **Quantified** | Specific numbers over general claims. | "15 minutes." Not "very fast." |
+| **Informal** | Second-person `you` / `你`, never the formal `您`. | "We compress design and shipping into one moment." Not "Esteemed customers may experience..." |
+| **Competent** | Authoritative, not aspirational. We have shipped 500,000 items; we say so. | "We've delivered over 500,000 custom items." Not "Imagine if you could..." |
+| **Triplet structure** | Headlines, lists, and value props tend to come in threes. | "Selection, design, ordering. One moment." |
+
+---
+
+## Sample voice
+
+### Hero
+
+<div style={{ marginTop: '16px', padding: '24px', backgroundColor: '#F9F9F9', borderRadius: '12px' }}>
+  <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '32px', fontWeight: 700, lineHeight: 1.1, letterSpacing: '-0.02em', color: '#040404' }}>A moment to complete selection, design, quoting, and ordering.</div>
+  <div style={{ fontFamily: '"Noto Sans TC", sans-serif', fontSize: '20px', lineHeight: 1.4, fontWeight: 400, color: '#6C6C6C', marginTop: '12px' }}>一刻完成選品、設計、報價、訂購。</div>
+  <div style={{ marginTop: '16px', fontSize: '16px', color: '#040404' }}>Upload your logo. See an instant preview. Get an instant quote. Track sampling, bulk production, and shipping in real time.</div>
+</div>
+
+### Value proposition
+
+<div style={{ marginTop: '16px', padding: '24px', backgroundColor: '#F9F9F9', borderRadius: '12px' }}>
+  <div style={{ fontWeight: 600, fontSize: '20px', color: '#040404' }}>Fast and efficient</div>
+  <div style={{ marginTop: '8px', fontSize: '16px', color: '#040404', lineHeight: 1.6 }}>No more back-and-forth on gift orders. Inkslap makes the whole flow fast and smooth — without the headache.</div>
+</div>
+
+### About
+
+<div style={{ marginTop: '16px', padding: '24px', backgroundColor: '#F9F9F9', borderRadius: '12px' }}>
+  <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '24px', fontWeight: 700, lineHeight: 1.2, color: '#040404' }}>We're your North Star in the procurement maze.</div>
+  <div style={{ fontFamily: '"Noto Sans TC", sans-serif', fontSize: '16px', lineHeight: 1.4, fontWeight: 400, color: '#6C6C6C', marginTop: '12px' }}>我們是你在採購迷宮裡的北極星。</div>
+  <div style={{ marginTop: '16px', fontSize: '16px', color: '#040404', lineHeight: 1.6 }}>Inkslap compresses design, sampling, manufacturing, and logistics into one moment. You complete a design and send it to sample or bulk production in a single click. Every step is visible.</div>
+</div>
+
+### Closing line
+
+> Hand the work to us. You just wait for the delivery.
+>
+> `把工作交給我們，你等著收貨。`
+
+This is the brand's signature closing — confident, casual, exactly one sentence of relief after a page of capability claims.
+
+---
+
+## Tone shifts by context
+
+The same voice flexes by context. Marketing copy leans into the metaphors; product UI strips them out; error messages get plain and procedural.
+
+| Context | Voice flex | Example |
+|---------|-----------|---------|
+| Marketing hero | Confident, metaphor-friendly | "A moment to complete it all." |
+| Product UI | Plain, action-oriented | "Upload your logo" |
+| Error message | Procedural, no shame | "Your sign-in needs to be refreshed. Please log in again." |
+| Helper text | Specific, single fact | "Password must be at least 8 characters, letters and numbers." |
+| Empty state | Acknowledge + redirect | "Your bag is empty." (no exclamation point) |
+| Loading | None | (a spinner only — no "Loading…" string) |
+| Success | Confirm + next action | "Order placed. We've sent a confirmation to hello@yourcompany.com." |
+
+---
+
+## Repeating phrases (signature lexicon)
+
+These show up across the brand and earn their place by repetition:
+
+| Phrase (en) | Phrase (zh) | Where |
+|-------------|-------------|-------|
+| Upload your logo | 上傳 Logo | Every primary CTA |
+| Instant preview | 即時生成示意圖 | Services hero |
+| Instant quote | 即時報價 | Services hero |
+| Real-time tracking | 即時追蹤 | Services |
+| In a moment | 一刻 | Services H1, JSON-LD description |
+| Hand the work to us | 把工作交給我們 | Services closing |
+| The most trusted | 最受信賴 | Trust banner |
+
+---
+
+## What to avoid
+
+| Avoid | Why | Instead |
+|-------|-----|---------|
+| Vague time claims | The brand earns trust by being specific | "in 15 minutes", not "quickly" |
+| Formal `您` | The brand is informal across the entire site | use `你` always |
+| Italics for emphasis | Italics are not used | use weight 500 |
+| "Click here" links | Always describe the destination | "View product details" |
+| Exclamation points in UI | The brand is competent, not excited | end with a period |
+| "We're excited to..." | Aspirational warm-up costs words | start with the action |
+| "Powered by AI" | The AI tool is described by what it does | "Generate design previews from a prompt" |
+| Marketing-speak in error messages | Errors should be clear, not on-brand | "Wrong password. Try again." not "Oops, let's try that again!" |
+
+---
+
+## Things the brand says that other brands don't
+
+These are unusual, deliberate choices:
+
+- **"In a moment"** (`一刻`) — a more poetic time unit than "minutes" or "seconds". Used only in marketing copy.
+- **"North Star" + "procurement maze"** — explicit guidance metaphor in the About page.
+- **Specific minute counts in headers** — most B2B SaaS says "fast"; we say "15 minutes."
+- **The closing imperative** — "Hand the work to us. You just wait for the delivery." Direct enough that it lands; informal enough that it doesn't feel transactional.
+- **Decisions with weekly KPI updates surfaced to customers** — explicitly stated in `Speak with data` (`用數據說話`). The brand commits to transparency that most B2B platforms do not.
+
+---
+
+## Rules
+
+| Rule | Detail |
+|------|--------|
+| Always `you` | Second person, informal. Never `we offer you...` constructions. |
+| Sentence case headlines | One word capitalised, the rest sentence case. |
+| Chinese full stop on Chinese headlines | `。` not `.` on `zh-TW` content. |
+| Numbers over adjectives | When you can be specific, be specific. |
+| One idea per sentence | Multi-clause sentences are a smell. Split them. |
+| No italics, ever | The face does not ship italic; the brand does not use it. |
+| One sentence at the end | Pages close with a single declarative sentence as a call to action, not a paragraph. |

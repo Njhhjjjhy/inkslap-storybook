@@ -1,0 +1,239 @@
+{/* Color.mdx — Inkslap brand */}
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Color" />
+
+# Color
+
+The Inkslap colour system is built around one canonical blue, one accent sparkle, and a single yellow highlight — supported by a neutral scale and a small set of interaction colours.
+
+The live site exhibits drift between several near-identical brand-blue values. This system collapses them to the canonical `#0099DE`. See **Audit → Findings** for the full drift catalogue.
+
+---
+
+## Brand colours
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginTop: '24px' }}>
+  <div style={{ padding: '32px 24px', backgroundColor: '#0099DE', borderRadius: '12px', color: '#FFFFFF' }}>
+    <div style={{ fontWeight: 700, fontSize: '20px' }}>Inkslap Blue</div>
+    <div style={{ marginTop: '8px', fontFamily: 'monospace', fontSize: '14px', opacity: 0.85 }}>#0099DE</div>
+    <div style={{ marginTop: '4px', fontFamily: 'monospace', fontSize: '13px', opacity: 0.75 }}>rgb(0, 153, 222)</div>
+    <div style={{ marginTop: '12px', fontSize: '14px', opacity: 0.9 }}>Canonical. Logo wordmark, footer, primary CTAs, active states.</div>
+  </div>
+  <div style={{ padding: '32px 24px', backgroundColor: '#FFA81B', borderRadius: '12px', color: '#040404' }}>
+    <div style={{ fontWeight: 700, fontSize: '20px' }}>Sparkle</div>
+    <div style={{ marginTop: '8px', fontFamily: 'monospace', fontSize: '14px', opacity: 0.85 }}>#FFA81B</div>
+    <div style={{ marginTop: '4px', fontFamily: 'monospace', fontSize: '13px', opacity: 0.75 }}>rgb(255, 168, 27)</div>
+    <div style={{ marginTop: '12px', fontSize: '14px', opacity: 0.9 }}>The wordmark accent. Used sparingly elsewhere.</div>
+  </div>
+  <div style={{ padding: '32px 24px', backgroundColor: '#FFDD76', borderRadius: '12px', color: '#040404' }}>
+    <div style={{ fontWeight: 700, fontSize: '20px' }}>Highlight</div>
+    <div style={{ marginTop: '8px', fontFamily: 'monospace', fontSize: '14px', opacity: 0.85 }}>#FFDD76</div>
+    <div style={{ marginTop: '4px', fontFamily: 'monospace', fontSize: '13px', opacity: 0.75 }}>rgb(255, 221, 118)</div>
+    <div style={{ marginTop: '12px', fontSize: '14px', opacity: 0.9 }}>Active-tab indicator. Used only for selection state.</div>
+  </div>
+</div>
+
+---
+
+## Signature gradient
+
+The brand has a single signature gradient — a decorative 8 px bar that appears between major homepage sections.
+
+<div style={{ marginTop: '24px' }}>
+  <div style={{ height: '40px', background: 'linear-gradient(45deg, #80CCEF 0%, #F7D94D 50%, #FFA81B 100%)', borderRadius: '8px' }} />
+  <div style={{ marginTop: '12px', fontFamily: 'monospace', fontSize: '13px', color: '#6C6C6C' }}>
+    linear-gradient(45deg, #80CCEF 0%, #F7D94D 50%, #FFA81B 100%)
+  </div>
+</div>
+
+<div style={{ marginTop: '16px', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
+  <div style={{ padding: '16px', backgroundColor: '#80CCEF', borderRadius: '8px', color: '#040404' }}>
+    <strong>Light Blue</strong>
+    <div style={{ marginTop: '4px', fontFamily: 'monospace', fontSize: '13px' }}>#80CCEF</div>
+  </div>
+  <div style={{ padding: '16px', backgroundColor: '#F7D94D', borderRadius: '8px', color: '#040404' }}>
+    <strong>Soft Yellow</strong>
+    <div style={{ marginTop: '4px', fontFamily: 'monospace', fontSize: '13px' }}>#F7D94D</div>
+  </div>
+  <div style={{ padding: '16px', backgroundColor: '#FFA81B', borderRadius: '8px', color: '#040404' }}>
+    <strong>Brand Orange</strong>
+    <div style={{ marginTop: '4px', fontFamily: 'monospace', fontSize: '13px' }}>#FFA81B</div>
+  </div>
+</div>
+
+The gradient mirrors the wordmark's blue-plus-sparkle DNA, with yellow as the connective tissue. Use it sparingly — as a decorative divider, a page-edge accent, or a hero-card border — never as a wash behind text.
+
+---
+
+## Interaction colours
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px', marginTop: '24px' }}>
+  <div style={{ padding: '20px', backgroundColor: '#D03131', borderRadius: '8px', color: '#FFFFFF' }}>
+    <strong>Error</strong>
+    <div style={{ marginTop: '8px', fontFamily: 'monospace', fontSize: '13px', opacity: 0.85 }}>#D03131</div>
+  </div>
+  <div style={{ padding: '20px', backgroundColor: '#19B64E', borderRadius: '8px', color: '#FFFFFF' }}>
+    <strong>Success</strong>
+    <div style={{ marginTop: '8px', fontFamily: 'monospace', fontSize: '13px', opacity: 0.85 }}>#19B64E</div>
+  </div>
+  <div style={{ padding: '20px', backgroundColor: '#F88000', borderRadius: '8px', color: '#FFFFFF' }}>
+    <strong>Warning</strong>
+    <div style={{ marginTop: '8px', fontFamily: 'monospace', fontSize: '13px', opacity: 0.85 }}>#F88000</div>
+  </div>
+  <div style={{ padding: '20px', backgroundColor: '#6CA0BD', borderRadius: '8px', color: '#FFFFFF' }}>
+    <strong>Disabled</strong>
+    <div style={{ marginTop: '8px', fontFamily: 'monospace', fontSize: '13px', opacity: 0.85 }}>#6CA0BD</div>
+  </div>
+</div>
+
+The hyperlink colour is **Inkslap Blue** (`#0099DE`); it does not have its own token.
+
+---
+
+## Base colours
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px', marginTop: '24px' }}>
+  <div style={{ padding: '24px', backgroundColor: '#040404', borderRadius: '8px', color: '#FFFFFF' }}>
+    <strong>Black</strong>
+    <div style={{ marginTop: '8px', fontFamily: 'monospace', fontSize: '13px', opacity: 0.85 }}>#040404</div>
+    <div style={{ marginTop: '4px', fontSize: '13px', opacity: 0.7 }}>Primary text</div>
+  </div>
+  <div style={{ padding: '24px', backgroundColor: '#FFFFFF', borderRadius: '8px', color: '#040404', border: '1px solid #E3E3E3' }}>
+    <strong>White</strong>
+    <div style={{ marginTop: '8px', fontFamily: 'monospace', fontSize: '13px', color: '#6C6C6C' }}>#FFFFFF</div>
+    <div style={{ marginTop: '4px', fontSize: '13px', color: '#6C6C6C' }}>Surfaces, page background</div>
+  </div>
+  <div style={{ padding: '24px', backgroundColor: '#111A2D', borderRadius: '8px', color: '#FFFFFF' }}>
+    <strong>Deep Navy</strong>
+    <div style={{ marginTop: '8px', fontFamily: 'monospace', fontSize: '13px', opacity: 0.85 }}>#111A2D</div>
+    <div style={{ marginTop: '4px', fontSize: '13px', opacity: 0.7 }}>Seasonal banner accents</div>
+  </div>
+</div>
+
+---
+
+## Neutral scale
+
+A nine-step grey scale, sorted light to dark. Every observable grey on the live site has been collapsed into one of these steps.
+
+export const NeutralScale = () => {
+  const neutrals = [
+    { name: '50', value: '#F9F9F9', use: 'subtle background' },
+    { name: '100', value: '#F3F3F3', use: 'header search bg' },
+    { name: '150', value: '#F0F0F0', use: 'product card image bg' },
+    { name: '200', value: '#E3E3E3', use: 'default border' },
+    { name: '300', value: '#ABABAB', use: 'swatch border' },
+    { name: '400', value: '#999999', use: 'secondary microcopy' },
+    { name: '500', value: '#888888', use: 'inactive tabs' },
+    { name: '600', value: '#6C6C6C', use: 'placeholder text' },
+    { name: '700', value: '#666666', use: 'muted heading' },
+    { name: '800', value: '#333333', use: 'tag text' },
+    { name: '900', value: '#111111', use: 'card title (legacy)' },
+    { name: '950', value: '#040404', use: 'primary text' },
+  ];
+  return (
+    <div style={{ marginTop: '24px' }}>
+      {neutrals.map((color, i) => (
+        <div key={color.name} style={{
+          display: 'grid',
+          gridTemplateColumns: '60px 120px 1fr 60px',
+          alignItems: 'center',
+          padding: '12px 16px',
+          marginBottom: '4px',
+          backgroundColor: color.value,
+          color: i < 4 ? '#040404' : '#FFFFFF',
+          borderRadius: '6px',
+          border: i === 0 ? '1px solid #E3E3E3' : 'none',
+        }}>
+          <span style={{ fontFamily: 'monospace', fontSize: '13px' }}>neutral-{color.name}</span>
+          <span style={{ fontFamily: 'monospace', fontSize: '13px', opacity: 0.85 }}>{color.value}</span>
+          <span style={{ fontSize: '14px', opacity: 0.85 }}>{color.use}</span>
+          <span style={{ fontSize: '11px', opacity: 0.6, textAlign: 'right' }}>{i < 4 ? 'dark text' : 'light text'}</span>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+<NeutralScale />
+
+---
+
+## Text colours
+
+| Role | Token | Hex | Contrast on white |
+|------|-------|-----|-------------------|
+| Primary | `--color-text-primary` | `#040404` | 19.4:1 — passes AAA |
+| Secondary | `--color-text-secondary` | `#666666` | 5.7:1 — passes AA |
+| Muted | `--color-text-muted` | `#999999` | 2.85:1 — **fails AA** |
+| Inverse | `--color-text-inverse` | `#FFFFFF` | n/a |
+| Link | `--color-text-link` | `#0099DE` | 3.3:1 — **fails AA body**, passes large |
+
+The muted and link tokens both fail AA for body-text contrast on white. Their use is restricted — see **Guidelines → Accessibility**.
+
+---
+
+## Usage ratio
+
+This is a constrained system. By visible surface area on the live site:
+
+- **~75% neutrals** — white surfaces, grey text, black/dark text.
+- **~20% Inkslap Blue** — footer, CTAs, links, brand surfaces.
+- **~5% accents** — sparkle, highlight yellow, the signature gradient. Used sparingly for emphasis.
+
+Use the sparkle and the yellow highlight as **moments**, not as **finishes**. They lose their meaning when overused.
+
+---
+
+## Rules
+
+| Rule | Detail |
+|------|--------|
+| One blue, not three | Canonical Inkslap Blue is `#0099DE`. The drift values `#119ADE` and `#0D95DE` are not part of the system. |
+| One dark text, not three | Canonical text dark is `#040404`. `#000000` and `#111111` are drift. |
+| Reference by token only | Never use raw hex values. Use the `--color-*` custom properties. |
+| Light mode only | No dark mode is documented. The live site is light-mode only. |
+| All text targets WCAG AA | 4.5:1 for body, 3:1 for large text. Drift colours that fail are flagged in the audit. |
+| Sparkle stays sparkle | `#FFA81B` is the only correct value for the wordmark accent. |
+
+---
+
+## CSS custom properties
+
+```css
+/* Brand */
+var(--color-brand-blue)        /* #0099DE — canonical */
+var(--color-brand-sparkle)     /* #FFA81B */
+var(--color-brand-yellow)      /* #FFDD76 */
+
+/* Gradient stops */
+var(--gradient-brand)          /* the signature 45deg gradient */
+var(--gradient-brand-blue)     /* #80CCEF */
+var(--gradient-brand-yellow)   /* #F7D94D */
+var(--gradient-brand-orange)   /* #FFA81B */
+
+/* Interaction */
+var(--color-interaction-error)
+var(--color-interaction-success)
+var(--color-interaction-warning)
+var(--color-interaction-hyperlink)
+var(--color-interaction-disabled)
+
+/* Base */
+var(--color-base-black)        /* #040404 */
+var(--color-base-white)        /* #FFFFFF */
+var(--color-tint-navy-deep)    /* #111A2D — seasonal */
+
+/* Scale (50–950) */
+var(--color-neutral-100)
+var(--color-neutral-400)
+var(--color-neutral-950)
+
+/* Semantic */
+var(--color-text-primary)
+var(--color-text-secondary)
+var(--color-text-muted)
+var(--color-text-inverse)
+var(--color-text-link)
+```

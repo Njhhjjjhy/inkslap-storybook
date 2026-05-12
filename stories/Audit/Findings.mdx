@@ -1,0 +1,247 @@
+{/* Findings.mdx — Inkslap brand audit */}
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Audit/Findings" />
+
+# Audit findings
+
+This page catalogues every drift, inconsistency, and accessibility failure found in the live-site extraction (2026-05-12). Each item lists what the live site does today, what the documented brand says, and the action to bring the two into alignment.
+
+Use this page as the punch list for normalising the production site against the documented system.
+
+---
+
+## High priority — brand drift
+
+### 1. Three competing brand blues
+
+| Where | Hex |
+|-------|-----|
+| Logo SVG, footer, primary CTAs (Services / About), active states | `#0099DE` ← **canonical** |
+| Home FeaturedProducts `Customise` button + upload pill | `#119ADE` |
+| Home `CTASection` `Explore products` button | `#0D95DE` |
+
+**Action:** Replace `#119ADE` and `#0D95DE` everywhere with `var(--color-brand-blue)`. The brand-tinted shadow `rgba(17,154,222,0.3)` should also be normalised to `rgba(0,153,222,0.3)` — though the visual difference is imperceptible.
+
+---
+
+### 2. Brand name casing
+
+| Form | Where |
+|------|-------|
+| `inkslap` | wordmark SVG (correct) |
+| `Inkslap` | body copy (correct) |
+| `InkSlap` | homepage `Fast and efficient` description (**wrong**) |
+| `INKSLAP` | hero image `alt` text on every page (**wrong**) |
+
+**Action:** Replace `InkSlap` with `Inkslap` in homepage copy. Replace `INKSLAP` in image `alt` text with descriptive alt that communicates the slide's message.
+
+---
+
+### 3. Three values for "primary text dark"
+
+| Hex | Where |
+|-----|-------|
+| `#040404` | header text, page titles ← **canonical** |
+| `#000000` | Services H1, body default, 404 page background |
+| `#111111` | home product card titles, KeyFeatures titles |
+
+**Action:** Normalise all three to `var(--color-text-primary)` which resolves to `#040404`.
+
+---
+
+### 4. Two H1/H2 weights for the same hero role
+
+The Services and About pages both use 40 px / 700 hero headlines — but Services uses `<h1>` while About uses `<h2>`. Heading semantics inconsistent.
+
+**Action:** Use `<h1>` on every page's primary hero headline. There should be one `<h1>` per page, at the top, naming the page's purpose.
+
+---
+
+### 5. Three different button systems for primary CTA
+
+| Surface | Weight | Radius | Treatment |
+|---------|--------|--------|-----------|
+| Product detail (`直接購買` / `加入購物車`) | 400 | 5.58 px | black outline + black fill |
+| Services / About primary (`Upload your logo`) | 600 | 8 px | filled blue |
+| Home `CTASection` (`Explore products`) | 700 | 11.16 px | filled `#0D95DE` |
+
+**Action:** Adopt the **Services / About primary** as canonical (600 weight, 8 px radius, `--color-brand-blue` fill). Refactor product detail and home CTASection to match.
+
+---
+
+### 6. Yellow highlight used for two different states
+
+`#FFDD76` marks:
+
+- The active sub-nav tab on the catalogue (a tab-bar selection state).
+- The active tab in the login / register modal (a tab-control selection state).
+
+These are different control types and should not share the same indicator colour.
+
+**Action:** Reserve `#FFDD76` for the **catalogue sub-nav tab indicator**. The login/register modal uses the standard active-tab pattern (text in `--color-brand-blue` with a 2 px bottom border in the same blue).
+
+---
+
+## High priority — missing brand surfaces
+
+### 7. `文章消息` (Articles) is unbuilt
+
+The nav item appears in the header and footer on every page. It has **no `href` and no `onclick`**. Both plausible URLs return 404:
+
+- `/zh/articles` → 404
+- `/zh/news` → 404
+
+**Action:** Either build the articles page or remove the nav item. The half-built state is the single most visible brand drift on the site.
+
+---
+
+### 8. `/en` is a stub
+
+The URL accepts `/en` but renders the Chinese content. `<html lang="en">` is set on a page with no English translation. The JSON-LD `availableLanguage: ["zh-TW", "en"]` advertises support that doesn't exist.
+
+**Action:** Either ship an English version (the documented English-first target state) or remove the `/en` route and update the JSON-LD claim.
+
+---
+
+### 9. No language toggle anywhere
+
+No `EN` / `中文` switcher in the header, footer, or anywhere else.
+
+**Action:** Add a toggle to every header. See **Guidelines → Bilingual** for the documented pattern.
+
+---
+
+## Medium priority — accessibility failures
+
+### 10. Navigation links are not anchors
+
+Every header and footer nav item is a bare `<li>` element without an `<a>` wrapper. Keyboard users cannot tab between them; screen readers do not announce them as links; users cannot right-click "open in new tab". Three of the four use `onclick` workarounds; one (`文章消息`) is dead.
+
+**Action:** Replace every `<li>onclick</li>` with `<a href>`. Every nav item must be a real link.
+
+---
+
+### 11. Form inputs use placeholders as labels
+
+The login and register modal inputs have `placeholder="E-MAIL"` and `placeholder="密碼"` but no `<label>` element. Fails WCAG 1.3.1 and 3.3.2.
+
+**Action:** Add a visible `<label>` above every input. Move the placeholder text to an actual label; use the placeholder for an example (`name@company.com`) or remove it.
+
+---
+
+### 12. Fluid text collapses below 9 px
+
+`clamp()` and `vw`-derived sizes resolve to sub-9 px text at the captured 809-px viewport:
+
+| Surface | Rendered size |
+|---------|---------------|
+| Header search input | 8.899 px |
+| Product-detail buy buttons | 8.9799 px |
+| Cart shipping value | 11.236 px |
+| Product-count microcopy | 7.86 px |
+| Search filter pill | 7.281 px |
+
+**Action:** Add a `min(11px, ...)` floor inside every `clamp()` expression. See **Foundations → Typography**.
+
+---
+
+### 13. Contrast failures on system colours
+
+Multiple system-defined colour pairs fail AA contrast:
+
+| Pair | Ratio | Where |
+|------|-------|-------|
+| `#999999` on `#FFFFFF` | 2.85:1 | secondary microcopy (product count, breadcrumb, SKU) |
+| `#0099DE` on `#FFFFFF` (body) | 3.3:1 | active home tab — borderline 3:1 large only |
+| `#888888` on `#FFFFFF` | 3.5:1 | inactive home tab |
+| `#F88000` on `#FFEFDF` | 2.7:1 | warning tag (`優惠價`) |
+| `#FFFFFF` on `#0099DE` (body size) | 3.3:1 | footer copyright, footer nav |
+
+**Action:** Reserve the failing colours for large text only. For body sizes, darken the foreground or lighten the background. The warning tag pair must be reworked entirely.
+
+---
+
+### 14. Touch targets below 44 × 44
+
+| Element | Size |
+|---------|------|
+| Header `登入` / `註冊` | 37 × 21 px |
+| Header cart icon | ~24–26 px |
+| Search input | 26 px tall |
+| Hero arrows | 40 × 40 px (4 px short) |
+| Product-detail colour swatches | 20 × 20 px |
+
+**Action:** Expand hit areas (via padding) to 44 × 44 without enlarging the visible glyph.
+
+---
+
+### 15. No visible focus rings
+
+Focus rings are not interactively triggered in any captures and do not appear in computed CSS for primary interactive elements.
+
+**Action:** Add `--shadow-focus` to every focusable element on `:focus-visible`. See **Foundations → Shadows**.
+
+---
+
+## Low priority — quality
+
+### 16. Homepage `<title>` is a placeholder
+
+`/zh` returns the literal `<title>New Homepage</title>`.
+
+**Action:** Set a proper title that includes "Inkslap" and a one-line value prop. Match the pattern from other pages.
+
+---
+
+### 17. Logo `<a>` has unreset link colour
+
+The wrapping anchor has `color: rgb(0, 0, 238)` — the browser default unvisited blue. Invisible because the child is an `<img>`, but indicates a missing CSS reset.
+
+**Action:** Add `a { color: inherit; text-decoration: none; }` to the reset, or override per-anchor.
+
+---
+
+### 18. Catalogue sidebar lists `原子筆` (ball pen) twice
+
+Positions 2 and 15 in the `商品分類` sidebar are both `原子筆`. Likely a category-deduplication bug.
+
+**Action:** Investigate the category data source; dedupe.
+
+---
+
+### 19. Two icon libraries simultaneously
+
+Phosphor Icons (inline SVG) and PrimeIcons (font icon) both ship.
+
+**Action:** Standardise on Phosphor. Replace `pi-search`, `pi-chevron-right`, `pi-bolt`, `pi-palette`, `pi-shield` with their Phosphor equivalents.
+
+---
+
+### 20. Hero CTA pills are bitmap, not real buttons
+
+The "立即探索企業禮品" and "上傳Logo開始客製化" buttons on hero slides 1 and 3 are baked into PNG. They are not selectable, not clickable as buttons, not localisable, not accessible.
+
+**Action:** Render the hero CTAs as real `<button>` elements overlaid on the slide imagery. Strip the CTA from the PNG.
+
+---
+
+## Drift summary by category
+
+| Category | Items | Priority |
+|----------|-------|----------|
+| Brand colour drift (blues, darks) | 1, 3 | High |
+| Brand name casing | 2 | High |
+| Heading semantics | 4 | High |
+| CTA system inconsistency | 5 | High |
+| Indicator colour collision | 6 | High |
+| Unbuilt brand surfaces | 7, 8, 9 | High |
+| A11y — navigation | 10 | Medium |
+| A11y — forms | 11 | Medium |
+| A11y — text legibility | 12 | Medium |
+| A11y — contrast | 13 | Medium |
+| A11y — touch targets | 14 | Medium |
+| A11y — focus | 15 | Medium |
+| Quality bugs | 16, 17, 18, 19, 20 | Low |
+
+20 items total. Closing the High-priority list (items 1–9) is the largest win. The Medium-priority a11y items (10–15) are the largest user-facing fix.

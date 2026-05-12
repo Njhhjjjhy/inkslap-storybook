@@ -1,0 +1,185 @@
+{/* WritingStyle.mdx — Inkslap brand */}
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Guidelines/Writing Style" />
+
+# Writing style
+
+The mechanical rules for how Inkslap copy gets written. Voice is documented in **Voice & Tone**; this page covers grammar, capitalisation, punctuation, and number formatting.
+
+---
+
+## Brand name
+
+| Form | When to use |
+|------|-------------|
+| **`inkslap`** | Only in the wordmark itself. Never in body copy. |
+| **`Inkslap`** | Every other written context. The canonical body form. |
+
+The live site drifts: `INKSLAP` (uppercase) appears as image `alt` text; `InkSlap` (camel case) appears once in homepage copy. **Both are incorrect.** Always write `Inkslap` in body, headings, alt text, schema, and metadata. The wordmark is the only place lowercase is allowed.
+
+---
+
+## Capitalisation
+
+| Element | Casing | Example |
+|---------|--------|---------|
+| Headlines | Sentence case | `Want a custom gift? Easier than you think.` |
+| Body text | Sentence case | `Upload your logo to see an instant preview.` |
+| Buttons | Sentence case | `Upload your logo` |
+| Form labels | Sentence case | `Email`, `Quantity`, `Company name` |
+| Navigation items | Sentence case | `All products`, `Services`, `About us` |
+| Section headers | Sentence case | `What we solve` |
+| Section kickers | Sentence case | `Customer experience`, `Order fulfilment` |
+| Product names | Title case where the product is a proper noun | `Electroplated Ball Pen`, `Red Envelope` |
+| Acronyms | Uppercase | `UV`, `MOQ`, `API`, `ERP`, `KPI` |
+| English brand names embedded in Chinese | Title case with single-space separator | `Inkslap x 啾啾氣泡水` |
+| The wordmark | Lowercase, closed asset | `inkslap` (do not retypeset) |
+
+**No all-caps anywhere except acronyms.** `UPLOAD YOUR LOGO` is wrong; `Upload your logo` is right.
+
+---
+
+## Punctuation
+
+| Mark | Rule |
+|------|------|
+| Period | End full sentences. End headlines that are full sentences. |
+| Chinese full stop `。` | End full Chinese sentences. Use this, not the English period, on `zh-TW` content. |
+| Em-dash `—` | Used for emphasis or interruption. **Not** as a separator in bulleted lists. |
+| Colon | Allowed in `Label: value` lists. |
+| Semicolon | Allowed sparingly between closely related independent clauses. |
+| Exclamation point | Allowed in `Voice → Marketing` content only. Banned from product UI, error messages, and forms. |
+| Oxford comma | Use it. `Selection, design, and ordering.` |
+| Quotation marks | Use straight quotes (`"`) in JSX attribute values; use curly quotes (`"` `"`) in body prose. |
+| Apostrophe | Curly (`'`) in body; straight (`'`) in code and attribute values. |
+
+### Bullet format
+
+Use the `**Bold label:** regular description` pattern:
+
+> - **Catalogue:** Browse products and customisation methods without logging in.
+> - **Configurator:** Build the order and see a live preview.
+> - **Approval:** Send the preview to a decision maker for sign-off.
+
+Never use em-dashes as separators in bullets. Never use uppercase labels.
+
+---
+
+## Numbers and units
+
+| Type | Format | Example |
+|------|--------|---------|
+| Currency | Symbol + space + value, or `NT$` glued to the number | `NT$ 20`, `$NT 20` (legacy on site, prefer `NT$`) |
+| Range | hyphen, no spaces | `NT$ 16-20`, `4-17 days` |
+| Time / duration | Numeral + space + unit, lowercase | `15 minutes`, `7 days`, `300 seconds` |
+| Quantities of items | Numeral + space + unit | `500,000 items delivered` |
+| Percentages | Numeral + `%`, no space | `8.02% CAGR` |
+| Approximate | Plain numeral, no `~` or `approx.` | `1.65 trillion` not `~1.65T` |
+| Phone numbers | Country code + spaced groups | `+886 979 089 999` |
+| Email addresses | All lowercase | `hello@inkslap.com` |
+| URLs | Lowercase host, no trailing slash | `inkslap.com` |
+| Dates | ISO `YYYY-MM-DD` in UI, written form `15 April 2025` in marketing | `2026-05-17` (delivery line), `April 2025` (pitch deck cover) |
+
+---
+
+## Sentence length
+
+Keep it short. The brand's promise is speed — the prose should reflect it.
+
+| Context | Max sentence length |
+|---------|---------------------|
+| Headlines | 8 words |
+| Sub-headlines | 14 words |
+| Body paragraphs | 22 words per sentence; 3 sentences per paragraph |
+| Button labels | 4 words |
+| Form labels | 3 words |
+| Helper text | 14 words |
+| Error messages | 14 words |
+
+If a sentence exceeds the limit, split it.
+
+---
+
+## Common phrasings
+
+| Use | Don't use |
+|-----|-----------|
+| Upload your logo | Send us your file |
+| Custom corporate gifts | Branded merchandise / promotional items |
+| Order | Purchase |
+| Quote | Estimate |
+| Bag (UK) / Bag (US) | Cart (banned — but acceptable inside the cart route name for legacy) |
+| Decision-maker | Approver |
+| Procurement | Buying |
+| In a moment | Quickly |
+| Instant preview | Live preview |
+| Real-time tracking | Order tracking |
+| Sign in | Login (as verb) |
+| Sign up | Registration |
+| Trusted by | Used by |
+
+The brand has a clear preference list. **"Cart" is the exception** — it lives in the URL `/zh/cart` and we leave it there, but new surfaces use "bag".
+
+---
+
+## Writing for forms
+
+| Element | Rule |
+|---------|------|
+| Label | Always present. Always visible. Never placeholder-only. |
+| Placeholder | Optional. If used, give an example, not a label restatement. |
+| Required marker | Asterisk `*` after label, in `--color-interaction-error` |
+| Helper text | Sits below the field. Sentence case. Ends with a period. |
+| Error message | Sits below the field. States what's wrong and how to fix it. |
+| Success message | Lives in a live region, brief. "Order placed." not "Success! Your order has been placed!" |
+
+**Example pattern:**
+
+> Label: `Email`
+> Placeholder: `name@company.com`
+> Helper: `We use this for order confirmations.`
+> Error: `Enter a valid email address.`
+
+---
+
+## Microcopy patterns
+
+| Pattern | Example |
+|---------|---------|
+| Empty state | `Your bag is empty.` + secondary action `Continue shopping`. |
+| Skeleton-loading | (no string — use a visual skeleton only) |
+| Confirmation | `Order placed. We've sent a confirmation to hello@yourcompany.com.` |
+| Destructive confirmation | `Remove this item from your bag?` + `Remove` / `Cancel`. |
+| 404 | `This page doesn't exist. Back to the home page.` (replace the current Next.js default English-only message; localise to zh-TW alongside.) |
+
+---
+
+## Localisation
+
+The brand is bilingual. Every string in this design system, every UI label, and every page surface must exist in both English and Traditional Chinese. See **Guidelines → Bilingual** for the rendering pattern.
+
+| Surface | English first | Traditional Chinese alongside |
+|---------|--------------|-------------------------------|
+| Headlines | yes | yes (below or alongside) |
+| Body | yes | optional (zh primary surfaces flip the order) |
+| Buttons | yes | yes |
+| Forms | yes | yes |
+| Errors | yes | yes |
+| Marketing | yes | yes |
+
+The English copy is canonical. The Traditional Chinese is the translation, with `lang="zh-TW"` correctly set.
+
+---
+
+## Rules
+
+| Rule | Detail |
+|------|--------|
+| `Inkslap` in body, `inkslap` only in the wordmark | No `INKSLAP`, no `InkSlap`. |
+| Sentence case everywhere except acronyms | One word capitalised. |
+| Specific over general | Always prefer a number to an adjective. |
+| Chinese full stop on zh content | `。` not `.`. |
+| No exclamation points in UI | Reserved for marketing. |
+| Short sentences | If it's longer than 22 words, split it. |
+| Both languages on every surface | English is canonical; Chinese is required, not optional. |

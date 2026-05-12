@@ -1,0 +1,324 @@
+{/* Forms.mdx — Inkslap brand */}
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Forms" />
+
+# Forms
+
+Form inputs share a consistent height (45 px), 16 px text, and a visible (not placeholder) label. The live site uses placeholder-only labelling — this is documented as drift in **Audit → Findings** item 11.
+
+---
+
+## Text input
+
+<div style={{ marginTop: '24px', maxWidth: '400px' }}>
+  <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: '#040404', marginBottom: '8px' }}>Email</label>
+  <input type="email" placeholder="name@company.com" style={{
+    width: '100%',
+    padding: '10px 14px',
+    backgroundColor: '#FFFFFF',
+    color: '#040404',
+    border: '1px solid #E3E3E3',
+    borderRadius: '8px',
+    fontFamily: 'Inter, "Noto Sans TC", sans-serif',
+    fontSize: '16px',
+    lineHeight: 1.4,
+    boxSizing: 'border-box',
+  }} />
+  <p style={{ marginTop: '6px', fontSize: '13px', color: '#6C6C6C' }}>We use this for order confirmations.</p>
+</div>
+
+```html
+<label for="email">Email</label>
+<input id="email" type="email" placeholder="name@company.com" aria-describedby="email-help" />
+<p id="email-help">We use this for order confirmations.</p>
+```
+
+| Property | Value |
+|----------|-------|
+| Height | 45 px |
+| Background | `--color-base-white` |
+| Border | `1px solid var(--color-border-default)` |
+| Border radius | `var(--radius-md)` (8 px) |
+| Padding | `10px 14px` |
+| Font | Inter / Noto Sans TC, 16 px / 400 |
+| Text colour | `--color-text-primary` |
+| Placeholder colour | `--color-text-muted` (`#999999`) |
+
+---
+
+## States
+
+<div style={{ marginTop: '24px', display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px', maxWidth: '700px' }}>
+  <div>
+    <label style={{ display: 'block', fontSize: '13px', color: '#6C6C6C', marginBottom: '8px' }}>Default</label>
+    <input placeholder="Default" style={{ width: '100%', padding: '10px 14px', border: '1px solid #E3E3E3', borderRadius: '8px', fontSize: '16px', boxSizing: 'border-box' }} />
+  </div>
+  <div>
+    <label style={{ display: 'block', fontSize: '13px', color: '#6C6C6C', marginBottom: '8px' }}>Focus</label>
+    <input placeholder="Focused" style={{ width: '100%', padding: '10px 14px', border: '1px solid #0099DE', borderRadius: '8px', fontSize: '16px', boxShadow: '0 0 0 2px #FFFFFF, 0 0 0 4px #0099DE', boxSizing: 'border-box' }} />
+  </div>
+  <div>
+    <label style={{ display: 'block', fontSize: '13px', color: '#6C6C6C', marginBottom: '8px' }}>Filled</label>
+    <input defaultValue="hello@inkslap.com" style={{ width: '100%', padding: '10px 14px', border: '1px solid #E3E3E3', borderRadius: '8px', fontSize: '16px', boxSizing: 'border-box' }} />
+  </div>
+  <div>
+    <label style={{ display: 'block', fontSize: '13px', color: '#D03131', marginBottom: '8px' }}>Error</label>
+    <input defaultValue="invalid-email" aria-invalid="true" style={{ width: '100%', padding: '10px 14px', border: '2px solid #D03131', borderRadius: '8px', fontSize: '16px', boxSizing: 'border-box' }} />
+    <p style={{ marginTop: '6px', fontSize: '13px', color: '#D03131' }}>Enter a valid email address.</p>
+  </div>
+  <div>
+    <label style={{ display: 'block', fontSize: '13px', color: '#6C6C6C', marginBottom: '8px' }}>Disabled</label>
+    <input placeholder="Not available" disabled style={{ width: '100%', padding: '10px 14px', border: '1px solid #E3E3E3', borderRadius: '8px', fontSize: '16px', backgroundColor: '#F9F9F9', color: '#999', boxSizing: 'border-box', cursor: 'not-allowed' }} />
+  </div>
+  <div>
+    <label style={{ display: 'block', fontSize: '13px', color: '#0F7D34', marginBottom: '8px' }}>Success</label>
+    <input defaultValue="hello@inkslap.com" style={{ width: '100%', padding: '10px 14px', border: '2px solid #19B64E', borderRadius: '8px', fontSize: '16px', boxSizing: 'border-box' }} />
+  </div>
+</div>
+
+---
+
+## Password (with toggle)
+
+<div style={{ marginTop: '24px', maxWidth: '400px' }}>
+  <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: '#040404', marginBottom: '8px' }}>Password</label>
+  <div style={{ position: 'relative' }}>
+    <input type="password" defaultValue="hunter2hunter" style={{
+      width: '100%',
+      padding: '10px 44px 10px 14px',
+      backgroundColor: '#FFFFFF',
+      color: '#040404',
+      border: '1px solid #E3E3E3',
+      borderRadius: '8px',
+      fontFamily: 'Inter, sans-serif',
+      fontSize: '16px',
+      boxSizing: 'border-box',
+    }} />
+    <button aria-label="Show password" style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', background: 'transparent', border: 'none', cursor: 'pointer', padding: '4px', color: '#6C6C6C' }}>
+      <svg width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M247.31,124.76c-.35-.79-8.82-19.58-27.65-38.41C194.57,61.26,162.88,48,128,48S61.43,61.26,36.34,86.35C17.51,105.18,9,124,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208s66.57-13.26,91.66-38.34c18.83-18.83,27.3-37.61,27.65-38.4A8,8,0,0,0,247.31,124.76ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.47,133.47,0,0,1,25,128,133.33,133.33,0,0,1,48.07,97.25C70.33,75.19,97.22,64,128,64s57.67,11.19,79.93,33.25A133.46,133.46,0,0,1,231.05,128C223.84,141.46,192.43,192,128,192Zm0-112a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z"/></svg>
+    </button>
+  </div>
+  <p style={{ marginTop: '6px', fontSize: '13px', color: '#6C6C6C' }}>At least 8 characters, letters and numbers.</p>
+</div>
+
+---
+
+## Textarea
+
+<div style={{ marginTop: '24px', maxWidth: '500px' }}>
+  <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: '#040404', marginBottom: '8px' }}>Design prompt</label>
+  <textarea
+    rows={3}
+    placeholder="Describe the design you want — Inkslap's AI will generate previews."
+    style={{
+      width: '100%',
+      padding: '12px 14px',
+      backgroundColor: '#FFFFFF',
+      color: '#040404',
+      border: '1px solid #E3E3E3',
+      borderRadius: '8px',
+      fontFamily: 'Inter, sans-serif',
+      fontSize: '16px',
+      lineHeight: 1.5,
+      resize: 'vertical',
+      boxSizing: 'border-box',
+    }}
+  />
+</div>
+
+---
+
+## Select / dropdown
+
+<div style={{ marginTop: '24px', maxWidth: '400px' }}>
+  <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: '#040404', marginBottom: '8px' }}>Customisation method</label>
+  <select style={{
+    width: '100%',
+    padding: '10px 14px',
+    backgroundColor: '#FFFFFF',
+    color: '#040404',
+    border: '1px solid #E3E3E3',
+    borderRadius: '8px',
+    fontFamily: 'Inter, sans-serif',
+    fontSize: '16px',
+    boxSizing: 'border-box',
+  }}>
+    <option>UV print — fast-cure UV-ink digital print</option>
+    <option>Screen print</option>
+    <option>Heat transfer</option>
+    <option>Embroidery</option>
+    <option>Laser engraving</option>
+    <option>DTF transfer</option>
+  </select>
+</div>
+
+---
+
+## Radio group
+
+<div style={{ marginTop: '24px', maxWidth: '500px' }}>
+  <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: '#040404', marginBottom: '12px' }}>Order type</label>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+    {[
+      { label: 'Blank sample', desc: 'Get the unprinted product to check quality', checked: true },
+      { label: 'Custom sample', desc: 'A printed prototype before bulk', checked: false },
+      { label: 'Bulk order', desc: 'Production run for delivery', checked: false },
+    ].map((r) => (
+      <label key={r.label} style={{
+        display: 'flex',
+        alignItems: 'flex-start',
+        gap: '12px',
+        padding: '16px',
+        border: `1px solid ${r.checked ? '#0099DE' : '#E3E3E3'}`,
+        borderRadius: '8px',
+        cursor: 'pointer',
+        backgroundColor: r.checked ? '#F5FBFE' : '#FFFFFF',
+      }}>
+        <span style={{
+          width: '18px',
+          height: '18px',
+          marginTop: '2px',
+          borderRadius: '50%',
+          border: `2px solid ${r.checked ? '#0099DE' : '#ABABAB'}`,
+          backgroundColor: '#FFFFFF',
+          position: 'relative',
+          flexShrink: 0,
+        }}>
+          {r.checked && (
+            <span style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: '8px',
+              height: '8px',
+              borderRadius: '50%',
+              backgroundColor: '#0099DE',
+            }} />
+          )}
+        </span>
+        <span>
+          <div style={{ fontWeight: 500, color: '#040404' }}>{r.label}</div>
+          <div style={{ fontSize: '13px', color: '#6C6C6C', marginTop: '2px' }}>{r.desc}</div>
+        </span>
+      </label>
+    ))}
+  </div>
+</div>
+
+---
+
+## Checkbox
+
+<div style={{ marginTop: '24px', maxWidth: '500px' }}>
+  <label style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', cursor: 'pointer' }}>
+    <span style={{
+      width: '18px',
+      height: '18px',
+      marginTop: '2px',
+      borderRadius: '4px',
+      border: '1px solid #ABABAB',
+      backgroundColor: '#FFFFFF',
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexShrink: 0,
+    }} />
+    <span style={{ fontSize: '14px', color: '#040404', lineHeight: 1.5 }}>
+      I agree to Inkslap's <a href="#" style={{ color: '#0099DE', textDecoration: 'underline' }}>privacy policy</a> and <a href="#" style={{ color: '#0099DE', textDecoration: 'underline' }}>return policy</a>.
+    </span>
+  </label>
+</div>
+
+---
+
+## Quantity stepper
+
+<div style={{ marginTop: '24px' }}>
+  <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: '#040404', marginBottom: '8px' }}>Quantity</label>
+  <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+    <button aria-label="Decrease quantity" style={{
+      width: '36px',
+      height: '36px',
+      borderRadius: '50%',
+      backgroundColor: '#FFFFFF',
+      border: '1px solid #E3E3E3',
+      cursor: 'pointer',
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      color: '#040404',
+    }}>
+      <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor"><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128Z"/></svg>
+    </button>
+    <span style={{ minWidth: '40px', textAlign: 'center', fontSize: '16px', fontWeight: 500, color: '#040404' }}>1</span>
+    <button aria-label="Increase quantity" style={{
+      width: '36px',
+      height: '36px',
+      borderRadius: '50%',
+      backgroundColor: '#FFFFFF',
+      border: '1px solid #E3E3E3',
+      cursor: 'pointer',
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      color: '#040404',
+    }}>
+      <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg>
+    </button>
+  </div>
+</div>
+
+---
+
+## Form composition
+
+<div style={{ marginTop: '24px', maxWidth: '500px', padding: '32px', backgroundColor: '#FFFFFF', border: '1px solid #E3E3E3', borderRadius: '16px', boxShadow: '0 11px 15px -7px rgba(0,0,0,0.2), 0 24px 38px 3px rgba(0,0,0,0.14), 0 9px 46px 8px rgba(0,0,0,0.12)' }}>
+  <div style={{ fontWeight: 700, fontSize: '24px', marginBottom: '24px', color: '#040404' }}>Sign up</div>
+  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '16px' }}>
+    <div>
+      <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: '#040404', marginBottom: '6px' }}>First name</label>
+      <input style={{ width: '100%', padding: '10px 14px', border: '1px solid #E3E3E3', borderRadius: '8px', fontSize: '16px', boxSizing: 'border-box' }} />
+    </div>
+    <div>
+      <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: '#040404', marginBottom: '6px' }}>Last name</label>
+      <input style={{ width: '100%', padding: '10px 14px', border: '1px solid #E3E3E3', borderRadius: '8px', fontSize: '16px', boxSizing: 'border-box' }} />
+    </div>
+  </div>
+  <div style={{ marginBottom: '16px' }}>
+    <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: '#040404', marginBottom: '6px' }}>Work email</label>
+    <input type="email" placeholder="name@company.com" style={{ width: '100%', padding: '10px 14px', border: '1px solid #E3E3E3', borderRadius: '8px', fontSize: '16px', boxSizing: 'border-box' }} />
+  </div>
+  <div style={{ marginBottom: '20px' }}>
+    <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: '#040404', marginBottom: '6px' }}>Password</label>
+    <input type="password" style={{ width: '100%', padding: '10px 14px', border: '1px solid #E3E3E3', borderRadius: '8px', fontSize: '16px', boxSizing: 'border-box' }} />
+    <p style={{ marginTop: '6px', fontSize: '13px', color: '#6C6C6C' }}>At least 8 characters, letters and numbers.</p>
+  </div>
+  <button style={{
+    width: '100%',
+    padding: '14px',
+    backgroundColor: '#0099DE',
+    color: '#FFFFFF',
+    border: 'none',
+    borderRadius: '8px',
+    fontFamily: 'Inter, sans-serif',
+    fontSize: '16px',
+    fontWeight: 600,
+    cursor: 'pointer',
+  }}>Continue</button>
+</div>
+
+---
+
+## Rules
+
+| Rule | Detail |
+|------|--------|
+| Visible labels | Every input has a `<label>` above it. Placeholder-only labelling is banned. |
+| 45 px height | All single-line inputs are 45 px tall. |
+| 8 px radius | All inputs share `--radius-md`. |
+| Helper text below | Use `aria-describedby` to link helper text to the input. |
+| Error visible + announced | Errors use `aria-invalid="true"` + red border + message text. |
+| Required marker | `<span aria-hidden="true">*</span>` in `--color-interaction-error` after the label. |
+| Touch-friendly | Inputs are 45 px tall, comfortably above the 44 px touch-target minimum. |

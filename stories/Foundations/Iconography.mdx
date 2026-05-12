@@ -1,0 +1,123 @@
+{/* Iconography.mdx — Inkslap brand */}
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Iconography" />
+
+# Iconography
+
+Inkslap currently ships **two icon libraries simultaneously** — Phosphor Icons (inline SVG) and PrimeIcons (a font icon set). This is drift to resolve, not a feature. The documented system standardises on **Phosphor Icons** as the canonical library.
+
+---
+
+## Canonical library
+
+**Phosphor Icons** — `regular` weight. Available at [phosphoricons.com](https://phosphoricons.com). MIT-licensed, ships as inline SVG with a `viewBox` of `0 0 256 256`.
+
+### Why Phosphor
+
+- Already in use across the live site (header cart, search magnifier, chevrons, gallery glyphs).
+- Inline SVG — colour inherits from `currentColor`, sizes scale cleanly with `em` or `px`.
+- Six weights available (`thin`, `light`, `regular`, `bold`, `fill`, `duotone`). The system uses `regular` for everything.
+- Comprehensive set covering commerce, design, navigation, status, and content categories.
+
+### What to drop
+
+**PrimeIcons** classes (`pi-search`, `pi-chevron-right`, `pi-bolt`, `pi-palette`, `pi-shield`) currently appear inside PrimeReact components. Replace these with Phosphor equivalents during component refactor. PrimeIcons should not be referenced in new code.
+
+---
+
+## Sizes
+
+A four-step size scale.
+
+<div style={{ marginTop: '24px', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px' }}>
+  <div style={{ padding: '24px', backgroundColor: '#F9F9F9', borderRadius: '12px', textAlign: 'center' }}>
+    <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor" style={{ color: '#040404', display: 'inline-block' }}>
+      <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z" />
+    </svg>
+    <div style={{ marginTop: '12px' }}>
+      <code style={{ fontFamily: 'monospace', fontSize: '12px', background: 'transparent' }}>icon-sm</code>
+    </div>
+    <div style={{ fontFamily: 'monospace', fontSize: '12px', color: '#6C6C6C' }}>16px</div>
+    <div style={{ fontSize: '11px', color: '#999', marginTop: '4px' }}>Inline, captions</div>
+  </div>
+  <div style={{ padding: '24px', backgroundColor: '#F9F9F9', borderRadius: '12px', textAlign: 'center' }}>
+    <svg width="20" height="20" viewBox="0 0 256 256" fill="currentColor" style={{ color: '#040404', display: 'inline-block' }}>
+      <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z" />
+    </svg>
+    <div style={{ marginTop: '12px' }}>
+      <code style={{ fontFamily: 'monospace', fontSize: '12px', background: 'transparent' }}>icon-md</code>
+    </div>
+    <div style={{ fontFamily: 'monospace', fontSize: '12px', color: '#6C6C6C' }}>20px</div>
+    <div style={{ fontSize: '11px', color: '#999', marginTop: '4px' }}>Default</div>
+  </div>
+  <div style={{ padding: '24px', backgroundColor: '#F9F9F9', borderRadius: '12px', textAlign: 'center' }}>
+    <svg width="24" height="24" viewBox="0 0 256 256" fill="currentColor" style={{ color: '#040404', display: 'inline-block' }}>
+      <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z" />
+    </svg>
+    <div style={{ marginTop: '12px' }}>
+      <code style={{ fontFamily: 'monospace', fontSize: '12px', background: 'transparent' }}>icon-lg</code>
+    </div>
+    <div style={{ fontFamily: 'monospace', fontSize: '12px', color: '#6C6C6C' }}>24px</div>
+    <div style={{ fontSize: '11px', color: '#999', marginTop: '4px' }}>Navigation</div>
+  </div>
+  <div style={{ padding: '24px', backgroundColor: '#F9F9F9', borderRadius: '12px', textAlign: 'center' }}>
+    <svg width="40" height="40" viewBox="0 0 256 256" fill="currentColor" style={{ color: '#040404', display: 'inline-block' }}>
+      <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z" />
+    </svg>
+    <div style={{ marginTop: '12px' }}>
+      <code style={{ fontFamily: 'monospace', fontSize: '12px', background: 'transparent' }}>icon-xl</code>
+    </div>
+    <div style={{ fontFamily: 'monospace', fontSize: '12px', color: '#6C6C6C' }}>40px</div>
+    <div style={{ fontSize: '11px', color: '#999', marginTop: '4px' }}>Hero / feature</div>
+  </div>
+</div>
+
+---
+
+## Treatment
+
+Icons are **monochrome** and inherit their colour from `currentColor`. That means the same icon recolours by context: black on a white button, white on a brand-blue button, brand-orange when used as a sparkle accent.
+
+<div style={{ marginTop: '24px', display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+  <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 16px', backgroundColor: '#FFFFFF', border: '1px solid #E3E3E3', borderRadius: '8px', color: '#040404' }}>
+    <svg width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M239.69,239.5,217.85,114.14a16,16,0,0,0-15.78-13.86H184V72a56,56,0,0,0-112,0v28.28H53.93A16,16,0,0,0,38.15,114.14L16.31,239.5a16,16,0,0,0,15.78,18.78H223.91a16,16,0,0,0,15.78-18.78ZM88,72a40,40,0,0,1,80,0v28.28H88ZM32.09,242.28l21.84-125.36H72v25.41a8,8,0,0,0,16,0V116.92h80v25.41a8,8,0,0,0,16,0V116.92h18.07L223.91,242.28Z"/></svg>
+    <span style={{ fontSize: '14px', fontWeight: 500 }}>2 items in bag</span>
+  </div>
+  <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 16px', backgroundColor: '#0099DE', border: 'none', borderRadius: '8px', color: '#FFFFFF' }}>
+    <svg width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M239.69,239.5,217.85,114.14a16,16,0,0,0-15.78-13.86H184V72a56,56,0,0,0-112,0v28.28H53.93A16,16,0,0,0,38.15,114.14L16.31,239.5a16,16,0,0,0,15.78,18.78H223.91a16,16,0,0,0,15.78-18.78ZM88,72a40,40,0,0,1,80,0v28.28H88ZM32.09,242.28l21.84-125.36H72v25.41a8,8,0,0,0,16,0V116.92h80v25.41a8,8,0,0,0,16,0V116.92h18.07L223.91,242.28Z"/></svg>
+    <span style={{ fontSize: '14px', fontWeight: 500 }}>Add to bag</span>
+  </div>
+  <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 12px', backgroundColor: '#FFFBEC', border: '1px solid #FFA81B', borderRadius: '999px', color: '#FFA81B' }}>
+    <svg width="14" height="14" viewBox="0 0 256 256" fill="currentColor"><path d="M174.71,165.4l-9.35-30.41,24.92-19a8,8,0,0,0-4.27-14.32l-31.43-1.27-10.41-29.66a8,8,0,0,0-15.34,0L118.42,100.4,87,101.67a8,8,0,0,0-4.27,14.32l24.92,19L98.29,165.4a8,8,0,0,0,12.33,8.93L128,154.8l17.38,19.53a8,8,0,0,0,12.33-8.93Zm-46.71-7.94L113.65,141.6a8,8,0,0,0-5.18-3.13L93,135l11.93-9.09a8,8,0,0,0,3.06-9.41L114.61,99.1l5.66-16.11,5.66,16.11,6.62,17.39a8,8,0,0,0,3.06,9.41L147.54,135l-15.49,3.47a8,8,0,0,0-5.18,3.13Z"/></svg>
+    <span style={{ fontSize: '12px', fontWeight: 500 }}>AI generate</span>
+  </div>
+</div>
+
+---
+
+## Inventory
+
+Icons observed in current use on inkslap.com:
+
+| Category | Icons |
+|----------|-------|
+| Search and navigation | magnifier, chevron-right, chevron-left, chevron-up, chevron-down |
+| Commerce | shopping-cart, shopping-cart-arrow, printer |
+| Forms | plus, minus, eye, x (close), check |
+| Upload and design | image, cloud-upload, sparkle (AI), photograph |
+| Status | info-circle |
+| Feature glyphs (KeyFeatures) | lightning-bolt, palette, shield |
+
+---
+
+## Rules
+
+| Rule | Detail |
+|------|--------|
+| One library | Phosphor only. Replace PrimeIcons usages during refactor. |
+| One weight | `regular` for all interface icons. `fill` only when the icon represents a selected state. |
+| Inherits colour | Icons use `currentColor`. Do not hard-code fills. |
+| Sparkle exception | The Inkslap sparkle is a custom 4-point glyph, not Phosphor's `sparkle`. Use it only as the brand mark, never as a generic interface icon. |
+| Touch targets | Icons inside interactive controls require a 44 × 44 px hit area, even if the visible glyph is smaller. |
+| No mixed treatments | Do not mix Phosphor `regular` with `fill` or `duotone` on the same surface. |

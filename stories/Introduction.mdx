@@ -1,0 +1,110 @@
+{/* Introduction.mdx */}
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Introduction" />
+
+# The Inkslap brand
+
+<div style={{ height: '8px', background: 'linear-gradient(45deg, #80CCEF 0%, #F7D94D 50%, #FFA81B 100%)', borderRadius: '999px', margin: '24px 0 40px 0' }} />
+
+This is the documented brand and design system for **Inkslap** — a B2B marketplace for custom corporate gifts, operated by NCI Trading Co., Ltd. and based in Taipei.
+
+The contents were extracted directly from the live site at `https://inkslap.com` and cross-referenced with the company brand brief. Where the live site exhibits drift between near-identical values, this design system collapses them to a single canonical token. The drift catalogue lives under **Audit → Findings**.
+
+---
+
+## What Inkslap does
+
+Inkslap is a one-stop platform for putting a logo on a product. Companies upload a logo, configure a customised gift (mugs, pens, apparel, notebooks, red envelopes), see an instant preview with AI-generated design options, get an instant quote, and place the order. The promise: a process that traditionally takes thirty to forty-five days, done in fifteen minutes.
+
+**Trusted by:** OKX, Pokémon, Porsche, Sotheby's, Christie's, Netflix, Uber, Uber Eats, BlackRock, KFC, Volkswagen, Western Digital, Taipei 101, National Palace Museum, Herman Miller, Keith Haring, Shantell Martin, BenQ, CSD, Dentsu, Hongkuo, Max&Co, Namesake, TatlerAsia, Live.
+
+---
+
+## Brand DNA at a glance
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginTop: '24px' }}>
+  <div style={{ padding: '24px', backgroundColor: '#0099DE', borderRadius: '12px', color: '#FFFFFF' }}>
+    <div style={{ fontWeight: 700, fontSize: '20px' }}>Inkslap Blue</div>
+    <div style={{ marginTop: '8px', fontFamily: 'monospace', fontSize: '14px', opacity: 0.85 }}>#0099DE</div>
+    <div style={{ marginTop: '12px', fontSize: '14px', opacity: 0.85 }}>The dominant brand colour. Logo wordmark, footer, primary CTAs.</div>
+  </div>
+  <div style={{ padding: '24px', backgroundColor: '#FFA81B', borderRadius: '12px', color: '#040404' }}>
+    <div style={{ fontWeight: 700, fontSize: '20px' }}>Sparkle</div>
+    <div style={{ marginTop: '8px', fontFamily: 'monospace', fontSize: '14px', opacity: 0.85 }}>#FFA81B</div>
+    <div style={{ marginTop: '12px', fontSize: '14px', opacity: 0.85 }}>The only ornament on the wordmark. Used as accent.</div>
+  </div>
+  <div style={{ padding: '24px', backgroundColor: '#FFDD76', borderRadius: '12px', color: '#040404' }}>
+    <div style={{ fontWeight: 700, fontSize: '20px' }}>Highlight</div>
+    <div style={{ marginTop: '8px', fontFamily: 'monospace', fontSize: '14px', opacity: 0.85 }}>#FFDD76</div>
+    <div style={{ marginTop: '12px', fontSize: '14px', opacity: 0.85 }}>Active-state indicator on tabs.</div>
+  </div>
+</div>
+
+<div style={{ marginTop: '32px', padding: '32px', borderRadius: '16px', background: 'linear-gradient(45deg, #80CCEF 0%, #F7D94D 50%, #FFA81B 100%)' }}>
+  <div style={{ fontFamily: '"Inter", "Noto Sans TC", sans-serif', fontWeight: 700, fontSize: '24px', color: '#040404' }}>
+    Signature gradient
+  </div>
+  <div style={{ marginTop: '8px', fontFamily: 'monospace', fontSize: '14px', color: '#040404' }}>
+    linear-gradient(45deg, #80CCEF 0%, #F7D94D 50%, #FFA81B 100%)
+  </div>
+  <div style={{ marginTop: '12px', fontSize: '14px', color: '#040404' }}>
+    Light blue → soft yellow → brand orange. Mirrors the wordmark + sparkle DNA, with yellow as the connective tissue.
+  </div>
+</div>
+
+---
+
+## Voice in one line
+
+Direct. Second-person. Time-quantified. The brand promises specific numbers (15 minutes, 7 days, 14 days) rather than vague claims, and uses the informal `you` everywhere — even in the About page.
+
+**The tagline:** The most trusted corporate gifting platform.
+**The promise:** A moment to complete selection, design, quoting, and ordering.
+**The verb:** Upload your logo.
+
+---
+
+## How to read this site
+
+### For designers
+
+Start with **Foundations**. Colour, typography, spacing, and shadows are documented as tokens with exact values. The signature brand gradient and the brand-tinted shadow are signature treatments — note them.
+
+### For developers
+
+Every value here lives as a CSS custom property in [src/styles/global.css](https://github.com/RiaanMOHA/inkslap-storybook/blob/main/src/styles/global.css). Reference by token name; never use raw hex or px values in implementation.
+
+```css
+.cta-primary {
+  background: var(--color-brand-blue);
+  border-radius: var(--radius-md);
+  padding: var(--space-button-md);
+  box-shadow: var(--shadow-brand);
+}
+```
+
+### For writers
+
+**Guidelines → Voice & Tone** and **Writing Style** are canonical. Sentence case is the default everywhere. Italics are not used. The brand name is `Inkslap` in body copy and `inkslap` only in the wordmark.
+
+### For QA and audit
+
+**Audit → Findings** lists everything that drifted on the live site and what the documented canonical value is. Fixing the site to match this design system is the path to consistency.
+
+---
+
+## English-first
+
+The current live site is Traditional Chinese-only with a stub `/en` route. The documented brand inverts that: English is the canonical language, with Traditional Chinese alongside as the translation reference. Every page in this Storybook shows the English copy first; Chinese appears below it where relevant.
+
+The bilingual handling pattern is documented under **Guidelines → Bilingual**.
+
+---
+
+<div style={{ marginTop: '40px', padding: '24px', backgroundColor: '#F3F3F3', borderRadius: '12px', borderLeft: '4px solid #0099DE' }}>
+  <strong style={{ color: '#040404' }}>Version 1.0 — extracted 2026-05-12</strong>
+  <p style={{ margin: '8px 0 0 0', color: '#6C6C6C' }}>
+    The Inkslap brand, documented from the live site. See <strong>Audit → Findings</strong> for the gaps and inconsistencies still on the production site.
+  </p>
+</div>

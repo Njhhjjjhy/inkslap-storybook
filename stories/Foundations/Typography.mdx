@@ -1,0 +1,202 @@
+{/* Typography.mdx — Inkslap brand */}
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Typography" />
+
+# Typography
+
+The Inkslap type system pairs **Inter** (Latin) with **Noto Sans TC** (Traditional Chinese) and uses both at the same weights. The live site uses Noto Sans TC for everything — the documented system promotes Inter as the canonical English face with Noto Sans TC as the zh fallback.
+
+---
+
+## Font families
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginTop: '24px' }}>
+  <div style={{ padding: '32px', backgroundColor: '#F9F9F9', borderRadius: '12px', border: '1px solid #E3E3E3' }}>
+    <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '48px', fontWeight: 700, color: '#040404', letterSpacing: '-0.02em' }}>
+      Inter
+    </div>
+    <div style={{ marginTop: '12px', fontSize: '14px', color: '#6C6C6C' }}>
+      <strong style={{ color: '#040404' }}>Primary / English.</strong> Headlines, body, buttons, every Latin string.
+    </div>
+    <div style={{ marginTop: '8px', fontFamily: 'monospace', fontSize: '13px', color: '#6C6C6C' }}>Weights: 400 / 500 / 600 / 700</div>
+  </div>
+  <div style={{ padding: '32px', backgroundColor: '#F9F9F9', borderRadius: '12px', border: '1px solid #E3E3E3' }}>
+    <div style={{ fontFamily: '"Noto Sans TC", sans-serif', fontSize: '48px', fontWeight: 700, color: '#040404' }}>
+      思源黑體
+    </div>
+    <div style={{ marginTop: '12px', fontSize: '14px', color: '#6C6C6C' }}>
+      <strong style={{ color: '#040404' }}>Secondary / Traditional Chinese.</strong> Every Chinese character.
+    </div>
+    <div style={{ marginTop: '8px', fontFamily: 'monospace', fontSize: '13px', color: '#6C6C6C' }}>Weights: 400 / 500 / 600 / 700 / 900</div>
+  </div>
+</div>
+
+The two faces share the same weight axis (400 / 500 / 600 / 700) so they pair predictably. **Inter** is positioned first in the font stack; **Noto Sans TC** handles glyphs Inter cannot render.
+
+```css
+--font-family-body: 'Inter', 'Noto Sans TC', system-ui, sans-serif;
+--font-family-zh: 'Noto Sans TC', 'Inter', system-ui, sans-serif;
+```
+
+---
+
+## Type scale
+
+<div style={{ marginTop: '24px' }}>
+  <div style={{ padding: '20px 0', borderBottom: '1px solid #E3E3E3' }}>
+    <div style={{ display: 'flex', alignItems: 'baseline', gap: '16px', marginBottom: '8px' }}>
+      <code style={{ fontFamily: 'monospace', fontSize: '13px', color: '#6C6C6C', background: 'transparent' }}>display</code>
+      <span style={{ fontFamily: 'monospace', fontSize: '13px', color: '#999' }}>40px / 1.1 / 700</span>
+    </div>
+    <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '40px', lineHeight: 1.1, fontWeight: 700, letterSpacing: '-0.02em' }}>A moment to complete it all.</div>
+  </div>
+  <div style={{ padding: '20px 0', borderBottom: '1px solid #E3E3E3' }}>
+    <div style={{ display: 'flex', alignItems: 'baseline', gap: '16px', marginBottom: '8px' }}>
+      <code style={{ fontFamily: 'monospace', fontSize: '13px', color: '#6C6C6C', background: 'transparent' }}>h1</code>
+      <span style={{ fontFamily: 'monospace', fontSize: '13px', color: '#999' }}>40px / 1.1 / 700</span>
+    </div>
+    <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '40px', lineHeight: 1.1, fontWeight: 700, letterSpacing: '-0.02em' }}>The most trusted gifting platform</div>
+  </div>
+  <div style={{ padding: '20px 0', borderBottom: '1px solid #E3E3E3' }}>
+    <div style={{ display: 'flex', alignItems: 'baseline', gap: '16px', marginBottom: '8px' }}>
+      <code style={{ fontFamily: 'monospace', fontSize: '13px', color: '#6C6C6C', background: 'transparent' }}>h2</code>
+      <span style={{ fontFamily: 'monospace', fontSize: '13px', color: '#999' }}>28.8px / 1.15 / 700</span>
+    </div>
+    <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '28.8px', lineHeight: 1.15, fontWeight: 700, letterSpacing: '-0.01em' }}>Want a custom gift? Easier than you think.</div>
+  </div>
+  <div style={{ padding: '20px 0', borderBottom: '1px solid #E3E3E3' }}>
+    <div style={{ display: 'flex', alignItems: 'baseline', gap: '16px', marginBottom: '8px' }}>
+      <code style={{ fontFamily: 'monospace', fontSize: '13px', color: '#6C6C6C', background: 'transparent' }}>h3</code>
+      <span style={{ fontFamily: 'monospace', fontSize: '13px', color: '#999' }}>24px / 1.2 / 700</span>
+    </div>
+    <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '24px', lineHeight: 1.2, fontWeight: 700 }}>Three steps, one moment</div>
+  </div>
+  <div style={{ padding: '20px 0', borderBottom: '1px solid #E3E3E3' }}>
+    <div style={{ display: 'flex', alignItems: 'baseline', gap: '16px', marginBottom: '8px' }}>
+      <code style={{ fontFamily: 'monospace', fontSize: '13px', color: '#6C6C6C', background: 'transparent' }}>h4</code>
+      <span style={{ fontFamily: 'monospace', fontSize: '13px', color: '#999' }}>20px / 1.25 / 600</span>
+    </div>
+    <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '20px', lineHeight: 1.25, fontWeight: 600 }}>Fast and efficient</div>
+  </div>
+  <div style={{ padding: '20px 0', borderBottom: '1px solid #E3E3E3' }}>
+    <div style={{ display: 'flex', alignItems: 'baseline', gap: '16px', marginBottom: '8px' }}>
+      <code style={{ fontFamily: 'monospace', fontSize: '13px', color: '#6C6C6C', background: 'transparent' }}>h5</code>
+      <span style={{ fontFamily: 'monospace', fontSize: '13px', color: '#999' }}>16px / 1.3 / 700</span>
+    </div>
+    <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '16px', lineHeight: 1.3, fontWeight: 700 }}>Electroplated Ball Pen</div>
+  </div>
+  <div style={{ padding: '20px 0', borderBottom: '1px solid #E3E3E3' }}>
+    <div style={{ display: 'flex', alignItems: 'baseline', gap: '16px', marginBottom: '8px' }}>
+      <code style={{ fontFamily: 'monospace', fontSize: '13px', color: '#6C6C6C', background: 'transparent' }}>body-lg</code>
+      <span style={{ fontFamily: 'monospace', fontSize: '13px', color: '#999' }}>18px / 1.6 / 400</span>
+    </div>
+    <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '18px', lineHeight: 1.6, fontWeight: 400 }}>Upload your logo. We compress design, sampling, manufacturing and logistics into one moment.</div>
+  </div>
+  <div style={{ padding: '20px 0', borderBottom: '1px solid #E3E3E3' }}>
+    <div style={{ display: 'flex', alignItems: 'baseline', gap: '16px', marginBottom: '8px' }}>
+      <code style={{ fontFamily: 'monospace', fontSize: '13px', color: '#6C6C6C', background: 'transparent' }}>body</code>
+      <span style={{ fontFamily: 'monospace', fontSize: '13px', color: '#999' }}>16px / 1.6 / 400</span>
+    </div>
+    <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '16px', lineHeight: 1.6, fontWeight: 400 }}>Body text size. Use this for paragraphs, descriptions, and the bulk of running prose on every page.</div>
+  </div>
+  <div style={{ padding: '20px 0', borderBottom: '1px solid #E3E3E3' }}>
+    <div style={{ display: 'flex', alignItems: 'baseline', gap: '16px', marginBottom: '8px' }}>
+      <code style={{ fontFamily: 'monospace', fontSize: '13px', color: '#6C6C6C', background: 'transparent' }}>body-sm</code>
+      <span style={{ fontFamily: 'monospace', fontSize: '13px', color: '#999' }}>14px / 1.5 / 400</span>
+    </div>
+    <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '14px', lineHeight: 1.5, fontWeight: 400, color: '#666' }}>Secondary information, captions, supporting details, and dense table content.</div>
+  </div>
+  <div style={{ padding: '20px 0', borderBottom: '1px solid #E3E3E3' }}>
+    <div style={{ display: 'flex', alignItems: 'baseline', gap: '16px', marginBottom: '8px' }}>
+      <code style={{ fontFamily: 'monospace', fontSize: '13px', color: '#6C6C6C', background: 'transparent' }}>caption</code>
+      <span style={{ fontFamily: 'monospace', fontSize: '13px', color: '#999' }}>12px / 1.4 / 400</span>
+    </div>
+    <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '12px', lineHeight: 1.4, fontWeight: 400, color: '#999' }}>Metadata, timestamps, SKUs, fine print.</div>
+  </div>
+  <div style={{ padding: '20px 0' }}>
+    <div style={{ display: 'flex', alignItems: 'baseline', gap: '16px', marginBottom: '8px' }}>
+      <code style={{ fontFamily: 'monospace', fontSize: '13px', color: '#6C6C6C', background: 'transparent' }}>micro</code>
+      <span style={{ fontFamily: 'monospace', fontSize: '13px', color: '#999' }}>11px / 1.3 / 500 — FLOOR</span>
+    </div>
+    <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '11px', lineHeight: 1.3, fontWeight: 500, color: '#666' }}>The smallest legal size. Never go below 11px.</div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px', padding: '16px', backgroundColor: '#FFF7EE', borderRadius: '8px', borderLeft: '4px solid #D03131' }}>
+  <strong style={{ color: '#D03131' }}>Floor rule.</strong>
+  <p style={{ margin: '8px 0 0 0', fontSize: '14px' }}>The live site uses <code>clamp()</code> expressions that collapse to <strong>7–9 px</strong> at narrow viewports. This system enforces a minimum of <strong>11 px</strong> on any breakpoint. If a fluid scale would push text below 11 px, clamp it.</p>
+</div>
+
+---
+
+## Bilingual pairing
+
+When English and Chinese appear on the same surface, the same weight applies across both. The line height is the **same px value**, not the same multiplier — Noto Sans TC's cap height differs from Inter's.
+
+<div style={{ marginTop: '16px', padding: '24px', backgroundColor: '#F9F9F9', borderRadius: '12px' }}>
+  <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '24px', lineHeight: 1.2, fontWeight: 700, color: '#040404' }}>The most trusted corporate gifting platform</div>
+  <div style={{ fontFamily: '"Noto Sans TC", sans-serif', fontSize: '20px', lineHeight: 1.4, fontWeight: 500, color: '#6C6C6C', marginTop: '6px' }}>最受信賴的企業禮贈品平台</div>
+</div>
+
+The English form sits at the documented heading size; the Chinese reads one step down, in `--color-text-muted`. This is the documented bilingual stacking pattern. See **Guidelines → Bilingual**.
+
+---
+
+## Casing
+
+| Element | Casing | Example |
+|---------|--------|---------|
+| Wordmark | lowercase | `inkslap` (closed asset, do not retypeset) |
+| Brand name in body | title case | `Inkslap`, `Inkslap's platform` |
+| Headlines | sentence case | `The most trusted corporate gifting platform` |
+| Body text | sentence case | `Upload your logo to see an instant preview.` |
+| Buttons | sentence case | `Upload your logo`, `Talk to sales` |
+| Labels | sentence case | `Email`, `Quantity`, `Order type` |
+| Acronyms | uppercase | `UV`, `MOQ`, `API`, `ERP`, `KPI` |
+
+**Italics are not used anywhere.** The face does not ship an italic variant in the documented stack. If emphasis is needed, use weight (500) instead.
+
+---
+
+## Letter spacing
+
+Tighten as size grows. Open up at the smallest sizes.
+
+| Token | Value | Used at |
+|-------|-------|---------|
+| `letter-spacing-tight` | `-0.02em` | display, h1 |
+| `letter-spacing-snug` | `-0.01em` | h2 |
+| `letter-spacing-normal` | `0` | h3–h5, body |
+| `letter-spacing-wide` | `0.04em` | uppercase acronyms, micro labels |
+
+---
+
+## CSS custom properties
+
+```css
+/* Families */
+var(--font-family-display)   /* Inter primary, Noto Sans TC fallback */
+var(--font-family-body)      /* same as display */
+var(--font-family-zh)        /* Noto Sans TC primary */
+var(--font-family-mono)      /* monospace */
+
+/* Weights */
+var(--font-weight-regular)   /* 400 */
+var(--font-weight-medium)    /* 500 */
+var(--font-weight-semibold)  /* 600 */
+var(--font-weight-bold)      /* 700 */
+
+/* Sizes */
+var(--font-size-display)     /* 40px */
+var(--font-size-h1)          /* 40px */
+var(--font-size-h2)          /* 28.8px */
+var(--font-size-h3)          /* 24px */
+var(--font-size-h4)          /* 20px */
+var(--font-size-h5)          /* 16px */
+var(--font-size-body-lg)     /* 18px */
+var(--font-size-body)        /* 16px */
+var(--font-size-body-sm)     /* 14px */
+var(--font-size-caption)     /* 12px */
+var(--font-size-micro)       /* 11px — floor */
+```

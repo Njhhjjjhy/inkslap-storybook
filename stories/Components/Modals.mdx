@@ -1,0 +1,240 @@
+{/* Modals.mdx — Inkslap brand */}
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Modals" />
+
+# Modals
+
+Inkslap uses three modal patterns: an **auth modal** (sign in / sign up), a **forced-action dialog** (errors that require attention), and an **image lightbox** (product gallery zoom). All share the same Material-style elevation 24 shadow and 16 px corner radius.
+
+---
+
+## Auth modal
+
+Used for the sign in / sign up flow. 370 px wide, two-tab control, full-width form fields.
+
+<div style={{ marginTop: '24px', padding: '60px 40px', backgroundColor: '#F9F9F9', borderRadius: '12px', display: 'flex', justifyContent: 'center' }}>
+  <div style={{
+    width: '370px',
+    padding: '32px',
+    backgroundColor: '#FFFFFF',
+    borderRadius: '16px',
+    boxShadow: '0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12)',
+    position: 'relative',
+  }}>
+    <button aria-label="Close" style={{
+      position: 'absolute',
+      top: '-44px',
+      right: '0',
+      width: '32px',
+      height: '32px',
+      backgroundColor: '#FFFFFF',
+      border: 'none',
+      borderRadius: '50%',
+      cursor: 'pointer',
+      color: '#040404',
+      boxShadow: '0 2px 8px 0 rgba(0,0,0,0.1)',
+    }}>
+      <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor" style={{ display: 'inline-block' }}><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg>
+    </button>
+    <div style={{ display: 'flex', gap: '0', borderBottom: '1px solid #E3E3E3', marginBottom: '24px' }}>
+      <button style={{
+        flex: 1,
+        padding: '12px',
+        backgroundColor: 'transparent',
+        color: '#0099DE',
+        border: 'none',
+        borderBottom: '2px solid #0099DE',
+        fontWeight: 600,
+        fontSize: '16px',
+        cursor: 'pointer',
+        marginBottom: '-1px',
+      }}>Sign in</button>
+      <button style={{
+        flex: 1,
+        padding: '12px',
+        backgroundColor: 'transparent',
+        color: '#6C6C6C',
+        border: 'none',
+        fontWeight: 500,
+        fontSize: '16px',
+        cursor: 'pointer',
+      }}>Sign up</button>
+    </div>
+    <div style={{ marginBottom: '16px' }}>
+      <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: '#040404', marginBottom: '6px' }}>Email</label>
+      <input type="email" placeholder="name@company.com" style={{
+        width: '100%',
+        padding: '10px 14px',
+        border: '1px solid #E3E3E3',
+        borderRadius: '8px',
+        fontSize: '16px',
+        boxSizing: 'border-box',
+      }} />
+    </div>
+    <div style={{ marginBottom: '16px' }}>
+      <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: '#040404', marginBottom: '6px' }}>Password</label>
+      <input type="password" style={{
+        width: '100%',
+        padding: '10px 14px',
+        border: '1px solid #E3E3E3',
+        borderRadius: '8px',
+        fontSize: '16px',
+        boxSizing: 'border-box',
+      }} />
+    </div>
+    <button style={{
+      width: '100%',
+      padding: '14px',
+      backgroundColor: '#0099DE',
+      color: '#FFFFFF',
+      border: 'none',
+      borderRadius: '8px',
+      fontFamily: 'Inter, sans-serif',
+      fontSize: '16px',
+      fontWeight: 600,
+      cursor: 'pointer',
+    }}>Continue</button>
+    <a href="#" style={{
+      display: 'block',
+      marginTop: '16px',
+      textAlign: 'center',
+      fontSize: '14px',
+      color: '#0099DE',
+      textDecoration: 'none',
+    }}>Forgot password?</a>
+  </div>
+</div>
+
+### Anatomy
+
+| Part | Token |
+|------|-------|
+| Width | 370 px (fixed) |
+| Padding | `var(--space-7)` (32 px) |
+| Border radius | `var(--radius-xl)` (16 px) |
+| Shadow | `var(--shadow-modal)` |
+| Tab strip | 1-px bottom border `var(--color-border-default)`; active tab has 2-px brand-blue underline |
+| Form fields | See **Components → Forms** |
+| Primary CTA | Full-width, 14 px vertical padding |
+| Close button | Floats outside the modal top-right, 32 × 32 circular |
+| Backdrop | `rgba(0, 0, 0, 0.4)`, fade-in 200 ms |
+
+### Sign-up variant
+
+The sign-up tab adds a 3-step progress indicator above the form, a consent checkbox above the CTA, and the form expands to two-column for name fields. Step indicator:
+
+<div style={{ marginTop: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+    <span style={{ width: '24px', height: '24px', borderRadius: '50%', backgroundColor: '#0099DE', color: '#FFFFFF', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '13px', fontWeight: 600 }}>1</span>
+    <span style={{ fontSize: '13px', color: '#040404' }}>Details</span>
+  </div>
+  <div style={{ flex: 1, height: '1px', backgroundColor: '#E3E3E3' }} />
+  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+    <span style={{ width: '24px', height: '24px', borderRadius: '50%', backgroundColor: '#FFFFFF', border: '2px solid #ABABAB', color: '#6C6C6C', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '13px', fontWeight: 500 }}>2</span>
+    <span style={{ fontSize: '13px', color: '#6C6C6C' }}>Verify</span>
+  </div>
+  <div style={{ flex: 1, height: '1px', backgroundColor: '#E3E3E3' }} />
+  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+    <span style={{ width: '24px', height: '24px', borderRadius: '50%', backgroundColor: '#FFFFFF', border: '2px solid #ABABAB', color: '#6C6C6C', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '13px', fontWeight: 500 }}>3</span>
+    <span style={{ fontSize: '13px', color: '#6C6C6C' }}>Done</span>
+  </div>
+</div>
+
+---
+
+## Forced-action dialog
+
+For errors that require the user's attention before they can proceed (session expired, payment failed). **No close button** — the user must take the action.
+
+<div style={{ marginTop: '24px', padding: '60px 40px', backgroundColor: '#F9F9F9', borderRadius: '12px', display: 'flex', justifyContent: 'center' }}>
+  <div style={{
+    width: '420px',
+    padding: '32px',
+    backgroundColor: '#FFFFFF',
+    borderRadius: '16px',
+    boxShadow: '0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12)',
+    textAlign: 'left',
+  }}>
+    <div style={{ fontWeight: 700, fontSize: '20px', color: '#040404' }}>Your sign-in expired</div>
+    <p style={{ marginTop: '12px', fontSize: '14px', color: '#6C6C6C', lineHeight: 1.6 }}>For security, we've signed you out. Please sign in again to continue.</p>
+    <button style={{
+      marginTop: '20px',
+      padding: '12px 28px',
+      backgroundColor: '#0099DE',
+      color: '#FFFFFF',
+      border: 'none',
+      borderRadius: '999px',
+      fontFamily: 'Inter, sans-serif',
+      fontSize: '15px',
+      fontWeight: 600,
+      cursor: 'pointer',
+    }}>Sign in</button>
+  </div>
+</div>
+
+| Part | Token |
+|------|-------|
+| Width | 420 px |
+| Title | 20 px / 700 |
+| Body | 14 px / 400, `--color-text-secondary` |
+| CTA | Pill, brand-blue, single button, no secondary |
+| No close button | User must act |
+| Backdrop | Same as auth modal |
+
+---
+
+## Image lightbox
+
+Used for product image zoom. Full-viewport overlay with the image centred.
+
+| Part | Behaviour |
+|------|-----------|
+| Backdrop | `rgba(0, 0, 0, 0.9)` solid, no padding |
+| Image | Centred, max 90% viewport width and height |
+| Close | X button top-right, white on dark, 40 × 40 hit area |
+| Navigation | Left and right arrows centred vertically, circular 40 × 40 buttons |
+| Keyboard | `Escape` to close, `←` `→` to navigate |
+| Pinch / zoom | Native browser zoom enabled |
+
+---
+
+## Common behaviour
+
+All modals share:
+
+| Behaviour | Implementation |
+|-----------|----------------|
+| Focus trap | Tab cycles within the modal. First focus on the primary input or CTA. |
+| Backdrop dismiss | Click backdrop to dismiss — except on forced-action dialogs. |
+| Escape key | Closes the modal (except forced-action). |
+| Background scroll lock | `<body>` gets `overflow: hidden` while modal is open. |
+| Entrance animation | Backdrop fades in 200 ms `--ease-emphasized`; modal scales from 0.95 to 1.0 + fades in. |
+| Exit animation | Reverse of entrance, 150 ms. |
+| Reduced motion | Animations replaced with instant show/hide. |
+| ARIA | `<div role="dialog" aria-modal="true" aria-labelledby="...">` with focus moved to the title. |
+
+---
+
+## Anti-patterns
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginTop: '24px' }}>
+  <div style={{ padding: '20px', backgroundColor: '#F0FDF4', borderRadius: '8px', borderLeft: '4px solid #19B64E' }}>
+    <strong style={{ color: '#0F7D34' }}>Do</strong>
+    <ul style={{ margin: '12px 0 0 0', paddingLeft: '20px', color: '#040404' }}>
+      <li>Trap focus inside the modal.</li>
+      <li>Allow `Escape` to close (except forced-action).</li>
+      <li>Move focus to the title or first input when opened.</li>
+      <li>Return focus to the trigger element when closed.</li>
+    </ul>
+  </div>
+  <div style={{ padding: '20px', backgroundColor: '#FFF7EE', borderRadius: '8px', borderLeft: '4px solid #D03131' }}>
+    <strong style={{ color: '#D03131' }}>Don't</strong>
+    <ul style={{ margin: '12px 0 0 0', paddingLeft: '20px', color: '#040404' }}>
+      <li>Open a modal on page load (unless gating the session).</li>
+      <li>Nest modals.</li>
+      <li>Use modals for non-blocking notifications — use a toast.</li>
+      <li>Omit the close button on auth dialogs.</li>
+    </ul>
+  </div>
+</div>

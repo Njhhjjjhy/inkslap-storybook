@@ -1,0 +1,206 @@
+{/* Navigation.mdx — Inkslap brand */}
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Navigation" />
+
+# Navigation
+
+The site has four navigation surfaces: header (every page), catalogue sub-nav, catalogue sidebar, and footer. The live site implements these as bare `<li>` elements without `<a>` wrappers — a critical a11y bug documented under **Audit → Findings** item 10. This page documents the **correct** implementation.
+
+---
+
+## Header
+
+<div style={{ marginTop: '24px', backgroundColor: '#FFFFFF', borderBottom: '1px solid #E3E3E3', padding: '12px 24px', display: 'flex', alignItems: 'center', gap: '24px' }}>
+  <svg width="90" height="22" viewBox="0 0 130 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <text x="0" y="26" fontFamily="Inter, system-ui, sans-serif" fontSize="28" fontWeight="700" fill="#0099DE" letterSpacing="-0.5">inkslap</text>
+    <path d="M14 0 L15.5 4 L19.5 5.5 L15.5 7 L14 11 L12.5 7 L8.5 5.5 L12.5 4 Z" fill="#FFA81B" />
+  </svg>
+  <nav aria-label="Primary" style={{ display: 'flex', alignItems: 'center', gap: '20px', fontSize: '14px' }}>
+    <a href="#" style={{ color: '#040404', textDecoration: 'none', fontWeight: 500 }}>All products</a>
+    <a href="#" style={{ color: '#040404', textDecoration: 'none' }}>Services</a>
+    <a href="#" style={{ color: '#040404', textDecoration: 'none' }}>Articles</a>
+    <a href="#" style={{ color: '#040404', textDecoration: 'none' }}>About</a>
+  </nav>
+  <div style={{ flex: 1 }} />
+  <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 16px', backgroundColor: '#F3F3F3', borderRadius: '999px', fontSize: '13px', color: '#6C6C6C' }}>
+    <svg width="14" height="14" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"/></svg>
+    <span>Search</span>
+  </div>
+  <button aria-label="View bag" style={{ background: 'transparent', border: 'none', color: '#040404', cursor: 'pointer', padding: '4px' }}>
+    <svg width="22" height="22" viewBox="0 0 256 256" fill="currentColor"><path d="M239.69,239.5,217.85,114.14a16,16,0,0,0-15.78-13.86H184V72a56,56,0,0,0-112,0v28.28H53.93A16,16,0,0,0,38.15,114.14L16.31,239.5a16,16,0,0,0,15.78,18.78H223.91a16,16,0,0,0,15.78-18.78ZM88,72a40,40,0,0,1,80,0v28.28H88ZM32.09,242.28l21.84-125.36H72v25.41a8,8,0,0,0,16,0V116.92h80v25.41a8,8,0,0,0,16,0V116.92h18.07L223.91,242.28Z"/></svg>
+  </button>
+  <button style={{ padding: '8px 14px', backgroundColor: 'transparent', color: '#040404', border: '1px solid #040404', borderRadius: '4px', fontSize: '13px', fontWeight: 500, cursor: 'pointer' }}>Sign in</button>
+  <button style={{ padding: '8px 14px', backgroundColor: '#040404', color: '#FFFFFF', border: '1px solid #040404', borderRadius: '4px', fontSize: '13px', fontWeight: 500, cursor: 'pointer' }}>Sign up</button>
+  <div style={{ display: 'inline-flex', gap: '4px', padding: '4px', backgroundColor: '#F3F3F3', borderRadius: '999px' }}>
+    <button style={{ padding: '4px 10px', backgroundColor: '#0099DE', border: 'none', borderRadius: '999px', fontSize: '12px', color: '#FFFFFF', cursor: 'pointer', fontWeight: 500 }}>EN</button>
+    <button style={{ padding: '4px 10px', backgroundColor: 'transparent', border: 'none', borderRadius: '999px', fontSize: '12px', color: '#6C6C6C', cursor: 'pointer', fontWeight: 500 }} lang="zh-TW">中文</button>
+  </div>
+</div>
+
+### Anatomy
+
+| Part | Token | Notes |
+|------|-------|-------|
+| Background | `--color-base-white` | Solid white. |
+| Border-bottom | `1px solid var(--color-border-default)` | Single hairline. |
+| Height | 47–48 px | Tight, content-driven. |
+| Logo | `inkslap` SVG, 73 × 18 px | Wraps an `<a href="/">`. |
+| Nav links | `<a>` elements, 14 px / 500 weight | **Always `<a href>`, never bare `<li>`.** |
+| Search | 36 × pill, `--color-neutral-100` background | Animated placeholder hints. |
+| Bag icon | Phosphor cart, 22 × 22 inside 44 × 44 hit area | Shows count badge when items present. |
+| Sign in / Sign up | Outlined + filled-black button pair | 8 × 14 padding, 4 px radius. |
+| Language toggle | Pill-pair, brand-blue active | See **Guidelines → Bilingual**. |
+
+### States
+
+- **Active page:** the corresponding nav link is rendered with `--font-weight-semibold` and a 2-px brand-blue bottom border.
+- **Hover:** link colour shifts to `--color-brand-blue`.
+- **Focus:** `--shadow-focus` ring on the link, no underline.
+
+---
+
+## Sub-navigation (catalogue)
+
+A horizontal tab bar that filters the catalogue by category. Sits immediately below the header.
+
+<div style={{ marginTop: '24px', display: 'flex', gap: '4px', padding: '0 24px', backgroundColor: '#FFFFFF', borderBottom: '1px solid #E3E3E3', overflowX: 'auto' }}>
+  {['All products', 'Featured', 'Red envelopes', 'Fully custom', 'Apparel', 'Home', 'Kitchen', 'Stationery'].map((tab, i) => (
+    <button key={tab} style={{
+      padding: '14px 16px',
+      backgroundColor: i === 0 ? '#FFDD76' : 'transparent',
+      color: '#040404',
+      border: 'none',
+      fontSize: '14px',
+      fontWeight: i === 0 ? 600 : 500,
+      cursor: 'pointer',
+      whiteSpace: 'nowrap',
+    }}>{tab}</button>
+  ))}
+</div>
+
+| Property | Value |
+|----------|-------|
+| Active tab background | `--color-brand-yellow` (`#FFDD76`) |
+| Active tab font weight | 600 |
+| Inactive tab | transparent, `--color-text-primary` |
+| Padding | `14px 16px` |
+| Overflow | Horizontal scroll on narrow viewports |
+
+---
+
+## Sidebar (catalogue)
+
+A vertical list of categories in the catalogue's left rail.
+
+<div style={{ marginTop: '24px', maxWidth: '220px' }}>
+  <div style={{ padding: '20px', backgroundColor: '#FFFFFF', borderRadius: '12px', border: '1px solid #E3E3E3' }}>
+    <div style={{ fontWeight: 500, fontSize: '14px', color: '#040404', marginBottom: '12px' }}>Categories</div>
+    {[
+      { label: 'All products', active: true },
+      { label: 'Red envelopes' },
+      { label: 'Pens' },
+      { label: 'Notebooks' },
+      { label: 'Water bottles' },
+      { label: 'T-shirts' },
+      { label: 'Mugs' },
+      { label: 'Towels' },
+      { label: 'Accessories' },
+    ].map((item) => (
+      <a key={item.label} href="#" style={{
+        display: 'block',
+        padding: '8px 0',
+        fontSize: '14px',
+        color: item.active ? '#0099DE' : '#040404',
+        fontWeight: item.active ? 600 : 400,
+        textDecoration: 'none',
+      }}>{item.label}</a>
+    ))}
+  </div>
+</div>
+
+| Property | Value |
+|----------|-------|
+| Active item | `--color-brand-blue` text, 600 weight |
+| Inactive item | `--color-text-primary` text, 400 weight |
+| Item padding | `8px 0` |
+| Item gap | natural line-height stacking |
+
+---
+
+## Footer
+
+A single-row footer on Inkslap Blue background.
+
+<div style={{ marginTop: '24px', padding: '32px 60px', backgroundColor: '#0099DE', color: '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '24px' }}>
+  <div style={{ fontSize: '13px', opacity: 0.9 }}>
+    © 2026 NCI Trading Co., Ltd. All rights reserved.
+  </div>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
+    <svg width="80" height="20" viewBox="0 0 130 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <text x="0" y="26" fontFamily="Inter, system-ui, sans-serif" fontSize="28" fontWeight="700" fill="#FFFFFF" letterSpacing="-0.5">inkslap</text>
+      <path d="M14 0 L15.5 4 L19.5 5.5 L15.5 7 L14 11 L12.5 7 L8.5 5.5 L12.5 4 Z" fill="#FFA81B" />
+    </svg>
+    <nav aria-label="Footer">
+      <a href="#" style={{ color: '#FFFFFF', textDecoration: 'none', fontWeight: 600, fontSize: '15px', marginRight: '20px' }}>All products</a>
+      <a href="#" style={{ color: '#FFFFFF', textDecoration: 'none', fontWeight: 600, fontSize: '15px', marginRight: '20px' }}>Services</a>
+      <a href="#" style={{ color: '#FFFFFF', textDecoration: 'none', fontWeight: 600, fontSize: '15px', marginRight: '20px' }}>Articles</a>
+      <a href="#" style={{ color: '#FFFFFF', textDecoration: 'none', fontWeight: 600, fontSize: '15px' }}>About</a>
+    </nav>
+  </div>
+</div>
+
+| Property | Value |
+|----------|-------|
+| Background | `--color-brand-blue` |
+| Padding | `32px 60px` |
+| Text | `--color-text-inverse`, 600 weight, 15 px **(documented uplift — the live site uses 13 px which fails contrast)** |
+| Links | Real `<a href>` elements, no underline at rest |
+| Logo variant | White wordmark + orange sparkle |
+
+### Contrast note
+
+White text on Inkslap Blue is 3.3:1 — borderline for body, passes for large text. The documented footer uses **15 px / 600 weight** to qualify as "large text" and keep the brand colour. The live site uses 13 px which fails AA. See **Audit → Findings** item 13.
+
+---
+
+## Breadcrumb
+
+<div style={{ marginTop: '24px' }}>
+  <nav aria-label="Breadcrumb" style={{ fontSize: '13px', color: '#999' }}>
+    <a href="#" style={{ color: '#999', textDecoration: 'none' }}>Home</a>
+    <span style={{ margin: '0 8px' }}>›</span>
+    <a href="#" style={{ color: '#999', textDecoration: 'none' }}>All products</a>
+    <span style={{ margin: '0 8px' }}>›</span>
+    <span style={{ color: '#040404' }}>Electroplated ball pen</span>
+  </nav>
+</div>
+
+- Separator: `›` (single right-pointing angle, surrounded by 8 px space).
+- Trail items in `--color-text-muted`; current page in `--color-text-primary`.
+- Sits above the page title.
+
+---
+
+## Mobile navigation
+
+On viewports under 768 px, the primary nav collapses behind a hamburger trigger. The pattern:
+
+1. Replace inline nav with a single hamburger button (Phosphor `list` icon, 24 × 24 inside 44 × 44 hit area).
+2. Tapping opens a full-height drawer from the right.
+3. Drawer shows the same nav items as a vertical stack, plus the language toggle and the sign-in / sign-up pair.
+4. The bag icon stays in the header at all viewports.
+5. Drawer dismisses with `Escape`, clicking the backdrop, or the X button.
+
+---
+
+## Rules
+
+| Rule | Detail |
+|------|--------|
+| Every nav item is an `<a href>` | No bare `<li>onclick</li>`. No `<div role="button">`. |
+| Real URLs, not handlers | Right-click "open in new tab" must work. |
+| Active state is visible | Bottom border, weight, or colour change. Never just a colour at sub-AA contrast. |
+| Hamburger collapses below 768 px | The header items don't fit; collapse to a drawer. |
+| Language toggle on every page | Header, persistent. |
+| `<nav>` element with `aria-label` | Each navigation region (`Primary`, `Footer`, `Breadcrumb`) has its own labelled landmark. |

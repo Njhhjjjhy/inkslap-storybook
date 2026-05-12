@@ -1,0 +1,140 @@
+{/* Motion.mdx — Inkslap brand */}
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Motion" />
+
+# Motion
+
+Inkslap's motion system is modest. The live site uses motion for three things: rotating hero slides, the infinite-scroll partner marquee, and a typewriter-style placeholder in the header search. No scroll-triggered reveals, no parallax, no hover effects of consequence.
+
+The documented system adds a small set of duration and easing tokens so that any new motion stays consistent with what is already there.
+
+---
+
+## Duration scale
+
+<div style={{ marginTop: '24px' }}>
+  {[
+    { name: 'fast', value: '150ms', use: 'colour and opacity transitions' },
+    { name: 'normal', value: '200ms', use: 'transforms, default UI transitions' },
+    { name: 'slow', value: '300ms', use: 'modal entrance, larger transforms' },
+    { name: 'slower', value: '500ms', use: 'complex compound animations' },
+  ].map((d) => (
+    <div key={d.name} style={{
+      display: 'grid',
+      gridTemplateColumns: '140px 80px 1fr',
+      alignItems: 'center',
+      padding: '12px 0',
+      borderBottom: '1px solid #F0F0F0',
+    }}>
+      <code style={{ fontFamily: 'monospace', fontSize: '13px', color: '#040404', background: 'transparent' }}>duration-{d.name}</code>
+      <span style={{ fontFamily: 'monospace', fontSize: '13px', color: '#6C6C6C' }}>{d.value}</span>
+      <span style={{ fontSize: '14px', color: '#6C6C6C' }}>{d.use}</span>
+    </div>
+  ))}
+</div>
+
+---
+
+## Easing
+
+| Token | Value | Use |
+|-------|-------|-----|
+| `ease-out` | `cubic-bezier(0, 0, 0.2, 1)` | Elements entering — default for most UI transitions |
+| `ease-in-out` | `cubic-bezier(0.4, 0, 0.2, 1)` | Elements that start and end on screen |
+| `ease-emphasized` | `cubic-bezier(0.2, 0, 0, 1)` | Important state changes — modal entrance |
+| `linear` | `linear` | Continuous motion — partner marquee |
+
+---
+
+## Standard transitions
+
+```css
+--transition-colors: color 150ms ease-out, background-color 150ms ease-out, border-color 150ms ease-out;
+--transition-hover: all 150ms cubic-bezier(0, 0, 0.2, 1);
+```
+
+Apply `--transition-hover` to anything interactive. Apply `--transition-colors` to anything that changes colour but should not scale or transform.
+
+---
+
+## What animates on the live site
+
+| Surface | Behaviour | Duration | Easing |
+|---------|-----------|----------|--------|
+| Hero carousel | Auto-rotate between 3 slides, slide-fade transition | ~500ms | `ease-in-out` (sampled) |
+| Partner marquee | Continuous horizontal translate | constant | `linear` |
+| Search placeholder | Typewriter-cycles through hint terms | ~80ms per character (sampled) | n/a |
+| Modal entrance | Backdrop fade-in + scale-up | ~300ms | `ease-emphasized` (PrimeReact default) |
+| Loading spinner | Custom red curve glyph rotates | continuous | `linear` |
+
+What does **not** animate: scroll-triggered reveals, parallax, card hover lifts, cursor effects.
+
+---
+
+## Reduced motion
+
+Always respect `prefers-reduced-motion`. The documented behaviour:
+
+- Hero carousel auto-rotation pauses; user can still swipe.
+- Partner marquee pauses entirely.
+- Modal entrance fades only — no scale.
+- All transitions on interactive elements drop to `0.01ms`.
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+```
+
+This is included globally in [src/styles/global.css](../src/styles/global.css).
+
+---
+
+## Principles
+
+<div style={{ marginTop: '24px', display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px' }}>
+  <div style={{ padding: '24px', backgroundColor: '#FFFBEC', borderRadius: '12px', borderLeft: '4px solid #FFA81B' }}>
+    <strong>Purposeful</strong>
+    <p style={{ margin: '8px 0 0 0', fontSize: '14px', color: '#6C6C6C' }}>Every animation should guide attention, confirm an action, or show a relationship. Decorative motion has no place.</p>
+  </div>
+  <div style={{ padding: '24px', backgroundColor: '#F3F3F3', borderRadius: '12px', borderLeft: '4px solid #0099DE' }}>
+    <strong>Quick</strong>
+    <p style={{ margin: '8px 0 0 0', fontSize: '14px', color: '#6C6C6C' }}>Most UI transitions should be under 200ms. The brand's promise is speed; motion should reinforce that.</p>
+  </div>
+  <div style={{ padding: '24px', backgroundColor: '#F0FDF4', borderRadius: '12px', borderLeft: '4px solid #19B64E' }}>
+    <strong>Natural</strong>
+    <p style={{ margin: '8px 0 0 0', fontSize: '14px', color: '#6C6C6C' }}>Use easing curves that mimic physics. Avoid linear for UI transitions; reserve linear for continuous loops.</p>
+  </div>
+  <div style={{ padding: '24px', backgroundColor: '#F3F3F3', borderRadius: '12px', borderLeft: '4px solid #6C6C6C' }}>
+    <strong>Optional</strong>
+    <p style={{ margin: '8px 0 0 0', fontSize: '14px', color: '#6C6C6C' }}>Every animation must respect <code>prefers-reduced-motion</code>. Provide an instant alternative.</p>
+  </div>
+</div>
+
+---
+
+## CSS custom properties
+
+```css
+/* Durations */
+var(--duration-fast)            /* 150ms */
+var(--duration-normal)          /* 200ms */
+var(--duration-slow)            /* 300ms */
+var(--duration-slower)          /* 500ms */
+
+/* Easings */
+var(--ease-out)
+var(--ease-in-out)
+var(--ease-emphasized)
+
+/* Preset transitions */
+var(--transition-colors)
+var(--transition-hover)
+```
