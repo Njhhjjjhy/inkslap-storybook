@@ -23,15 +23,13 @@ git commit -m "your message"
 npm run deploy
 ```
 
-`npm run deploy` runs `git push origin main && git push vercel main` — pushes to both remotes in one command. Site rebuilds in ~15 seconds.
+`npm run deploy` is defined in `package.json` as:
 
-If `git push vercel main` ever fails with a credentials error, the gh CLI active account needs to be `Njhhjjjhy`:
-
-```bash
-gh auth switch -u Njhhjjjhy
-git push vercel main
-gh auth switch -u RiaanMOHA
 ```
+gh auth switch -u RiaanMOHA && git push origin main && gh auth switch -u Njhhjjjhy && git push vercel main && gh auth switch -u RiaanMOHA
+```
+
+It switches gh accounts between the two pushes because the gh credential helper resolves to whichever account is currently active. The script restores `RiaanMOHA` at the end. Site rebuilds on Vercel in ~15 seconds after the `vercel` push.
 
 ## Run locally
 
