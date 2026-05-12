@@ -7,7 +7,7 @@
   "scripts": {
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "deploy": "git push origin main && git push vercel main"
+    "deploy": "gh auth switch -u RiaanMOHA && git push origin main && gh auth switch -u Njhhjjjhy && git push vercel main && gh auth switch -u RiaanMOHA"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^5.0.0",
